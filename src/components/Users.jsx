@@ -3,17 +3,17 @@ import userImage from '../assets/images/userImage.png';
 
 const Users = () => {
   return (
-	<section className='bg-primary py-10'>
-		<div className='flex flex-col md:flex-row justify-between items-center max-w-[85%] mx-auto'>
+	<section className='bg-primary py-11'>
+		<div className='flex flex-col md:flex-row justify-between items-center max-w-[85%] mx-auto h-[420px]'>
 			<div className='w-2/5 relative'>
-				<img src={userImage} alt="User Image" className='w-[] ' />
+				<img src={userImage} alt="User Image" className='w-[] -mt-40 md:-mt-24' />
 			</div>
 
-			<div className='font-inter w-2/3 '>
-				<div className='pl-10 pt-32'>
+			<div className='font-inter md:w-2/3'>
+				<div className='md:pl-10'>
 					<h4 className='font-bold text-white text-sm md:text-3xl'>Our Users</h4>
 					<h1 className='font-bold text-3xl md:text-[50px] my-6'>Who It's Made For</h1>
-					<p className='font-normal text-sm md:text-[28px] leading-9'>
+					<p className='font-normal text-sm md:text-2xl'>
 						Earlystart is built for curious young minds and the grown-ups who care about their future.
 						Whether your child is just discovering technology or already showing signs of tech-savviness, 
 						Earlystart meets them right where they are — making learning to code and explore tech fun, engaging, 

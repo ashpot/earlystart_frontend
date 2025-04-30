@@ -2,23 +2,23 @@ import React from "react";
 import { FaVideo } from "react-icons/fa";
 import { GiLightBulb } from "react-icons/gi";
 import { FaUsers } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 export const aboutList = [
 	{
-		icon: <FaVideo />,
+		icon: <FaVideo size={65}/>,
 		title: "Learn through play",
 	},
 	{
-		icon: <GiLightBulb />,
-		title: "Explore interactive lessons",
+		icon: <GiLightBulb size={70}/>,
+		title: "Explore lessons",
 	},
 	{
-		icon: <FaUsers />,
+		icon: <FaUsers size={70}/>,
 		title: "Get creative",
 	},
 	{
-		icon: <FaUser />,
+		icon: <FaUserCircle size={70}/>,
 		title: "100% child-friendly",
 	},
 ];

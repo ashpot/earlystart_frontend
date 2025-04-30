@@ -8,7 +8,7 @@ const Features = () => {
 		<h4 className='font-bold text-secondary text-sm md:text-3xl'>Core Features/Benefits</h4>
 		<h1 className='font-bold text-3xl md:text-[50px] leading-10 my-3'>What Your Child Gets</h1>
 		<p className='font-normal text-sm md:text-xl'>
-			Earlystart is a smart learning companion for young children <br></br> — 
+			Earlystart is a smart learning companion for young children <br className='hidden md:block'></br> — 
 			combining play and education to build confidence
 		</p>
 	  </div>

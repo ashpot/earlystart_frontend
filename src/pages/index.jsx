@@ -6,6 +6,8 @@ import Users from '../components/Users'
 import Features from '../components/Features'
 import Plan from '../components/Plan'
 import Newsletter from '../components/Newsletter'
+import Partners from '../components/Partners'
+import Footer from '../components/Footer'
 
 const index = () => {
   return (
@@ -17,6 +19,8 @@ const index = () => {
 		<Features />
 		<Plan />
 		<Newsletter />
+		<Partners />
+		<Footer />
 	</div>
   )
 }
