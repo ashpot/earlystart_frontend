@@ -1,7 +1,7 @@
 import React from 'react';
 import appleicon from '../assets/images/appleicon.png';
 import playstore from '../assets/images/playstore.png';
-import heroImage from '../assets/images/heroimage.png';
+import heroImage from '../assets/images/heroImage.png';
 
 const Hero = () => {
   return (
