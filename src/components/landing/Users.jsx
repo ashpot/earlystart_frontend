@@ -1,12 +1,12 @@
 import React from 'react';
-import userImage from '../assets/images/userImage.png';
+import userImage from '../../assets/images/userImage.png';
 
 const Users = () => {
   return (
 	<section className='bg-primary py-11'>
 		<div className='flex flex-col md:flex-row justify-between items-center max-w-[85%] mx-auto h-[420px]'>
 			<div className='w-2/5 relative'>
-				<img src={userImage} alt="User Image" className='w-[] -mt-40 md:-mt-24' />
+				<img src={userImage} alt="User Image" loading='lazy' className='w-[] -mt-40 md:-mt-24' />
 			</div>
 
 			<div className='font-inter md:w-2/3'>

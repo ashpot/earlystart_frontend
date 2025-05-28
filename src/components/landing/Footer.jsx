@@ -1,7 +1,7 @@
 import React from 'react'
-import eStartLogo from '../assets/images/faxicon.png'
-import appleicon from '../assets/images/appleicon.png';
-import playstore from '../assets/images/playstore.png';
+import eStartLogo from '../../assets/images/faxicon.png'
+import appleicon from '../../assets/images/appleicon.png';
+import playstore from '../../assets/images/playstore.png';
 
 const Footer = () => {
   return (

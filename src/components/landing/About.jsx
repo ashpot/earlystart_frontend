@@ -1,5 +1,6 @@
 import React from 'react'
-import { aboutList } from '../data/InfoList';
+import { aboutList } from '../../data/InfoList';
+
 
 const About = () => {
   return (
@@ -13,7 +14,7 @@ const About = () => {
 
 	  <div className='grid grid-col-1 md:grid-cols-2 gap-6 font-inter md:w-2/5 ' >
 		{aboutList.map((key, index) => (
-		<div className='bg-secondary flex flex-col justify-center items-center rounded-3xl md:w-[200px] h-[200px] w-[90%] mx-auto'>
+		<div key={index} className='bg-secondary flex flex-col justify-center items-center rounded-3xl md:w-[200px] h-[200px] w-[90%] mx-auto'>
 			<div className='text-white mt-10 mb-3'>{key.icon}</div>
 			<p className='font-bold text-xl text-primary w-[80%] mx-auto pb-2'>{key.title}</p>
 		</div>

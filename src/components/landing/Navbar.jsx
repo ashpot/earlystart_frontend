@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/images/earlystartlogo.png';
+import logo from '../../assets/images/earlystartlogo.png';
 import { IoMenu } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 

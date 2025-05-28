@@ -1,7 +1,7 @@
 import React from 'react';
-import appleicon from '../assets/images/appleicon.png';
-import playstore from '../assets/images/playstore.png';
-import heroImage from '../assets/images/heroImage.png';
+import appleicon from '../../assets/images/appleicon.png';
+import playstore from '../../assets/images/playstore.png';
+import heroImage from '../../assets/images/heroImage.png';
 
 const Hero = () => {
   return (
@@ -35,7 +35,7 @@ const Hero = () => {
 		</div>
 
 		<div className='md:ml-[510px]'>
-			<img src={heroImage} alt="Hero Image" className=""/>
+			<img src={heroImage} alt="Hero Image" className="" loading='lazy'/>
 		</div>
 
 	</section>
