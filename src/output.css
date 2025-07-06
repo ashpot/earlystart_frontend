@@ -848,6 +848,10 @@ body {
   margin-top: -95%;
 }
 
+.-mt-\[80\%\] {
+  margin-top: -80%;
+}
+
 .block {
   display: block;
 }
