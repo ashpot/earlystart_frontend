@@ -1,0 +1,54 @@
+{
+  "courses": [
+    { "course": "Robotics 101", "category": "Tech", "lessons": 15, "dateAdded": "2025-05-01", "lastUpdated": "2025-05-15", "students": 120 },
+    { "course": "IoT Basics", "category": "Tech", "lessons": 10, "dateAdded": "2025-04-20", "lastUpdated": "2025-05-10", "students": 85 },
+    { "course": "Scratch Programming", "category": "Coding", "lessons": 8, "dateAdded": "2025-03-15", "lastUpdated": "2025-04-25", "students": 60 },
+    { "course": "Graphic Design 101", "category": "Design", "lessons": 12, "dateAdded": "2025-02-10", "lastUpdated": "2025-05-05", "students": 95 }
+  ],
+  "stats": {
+    "ytdEarnings": 598312,
+    "totalStudents": 35395,
+    "totalInstructors": 573,
+    "totalCourses": 2389
+  },
+  "earnings": [
+    { "month": "Jan 2025", "earnings": 2000, "earnings2": 24000 },
+    { "month": "Feb 2025", "earnings": 2200, "earnings2": 26400 },
+    { "month": "Mar 2025", "earnings": 1800, "earnings2": 21600 },
+    { "month": "Apr 2025", "earnings": 2300, "earnings2": 27600 },
+    { "month": "May 2025", "earnings": 2500, "earnings2": 30000 }
+  ],
+ "topCategories": [
+    { "title": "AI", "courseCount": 200 },
+    { "title": "Blockchain", "courseCount": 80 },
+    { "title": "Web Development", "courseCount": 150 },
+    { "title": "Data Science", "courseCount": 110 }
+  ],
+  "activeLearnings": [
+    { "user": "John Doe", "course": "Robotics 101", "status": 75 },
+    { "user": "Jane Smith", "course": "IoT Basics", "status": 40 },
+    { "user": "Alex Brown", "course": "Scratch Programming", "status": 90 },
+    { "user": "Emily Davis", "course": "Graphic Design", "status": 60 },
+    { "user": "John Doe", "course": "Robotics 101", "status": 75 },
+    { "user": "Jane Smith", "course": "IoT Basics", "status": 40 },
+    { "user": "Alex Brown", "course": "Scratch Programming", "status": 90 },
+    { "user": "Emily Davis", "course": "Graphic Design", "status": 60 },
+    { "user": "John Doe", "course": "Robotics 101", "status": 75 }
+  ],
+  "topInstructors": [
+    { "name": "Dr. Sarah Johnson", "degree": "PhD in Robotics", "classes": 12, "course": "Robotics" },
+    { "name": "Mr. Tom Lee", "degree": "MSc in IoT", "classes": 8, "course": "IoT Basics" },
+    { "name": "Ms. Emily Chen", "degree": "BA in Design", "classes": 15, "course": "Graphic Design" }
+  ],
+  "newStudents": [
+    { "name": "Michael Carter", "email": "michael.carter@example.com", "upgrading": "2025-06-01", "completed": "0" },
+    { "name": "Sophie Evans", "email": "sophie.evans@example.com", "upgrading": "2025-06-02", "completed": "1" },
+    { "name": "Liam Harris", "email": "liam.harris@example.com", "upgrading": "2025-06-03", "completed": "2" }
+  ],
+  "payments": [
+    { "name": "Alice Johnson", "amount": 99.99, "date": "2025-05-15" },
+    { "name": "Bob Smith", "amount": 149.50, "date": "2025-03-10" },
+    { "name": "Charlie Brown", "amount": 75.00, "date": "2024-12-01" },
+    { "name": "Diana Lee", "amount": 200.00, "date": "2025-06-01" }
+  ]
+}

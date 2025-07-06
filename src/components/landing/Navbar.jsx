@@ -15,19 +15,19 @@ const Navbar = () => {
   };
 
   return (
-    <section className="flex justify-between items-center bg-primary px-4">
-      <div className="py-2">
+    <section className="md:flex justify-between items-center px-20 mb-4 hidden sticky top-0 z-50 bg-white shadow-lg">
+      <div className="py-7">
         <a href="#home">
           <img src={logo} alt="EarlyStart Logo" className="" />
         </a>
       </div>
 
       <nav className="flex-grow flex justify-end">
-        <div className="font-inter space-x-9 font-bold text-base hidden md:flex items-center">
-          <a href="#home">Home</a>
-          <a href="#about">About EarlyStart</a>
-          <a href="#partnerships">Patnerships</a>
-          <a href="#contact" className="pr-5">Contact Us</a>
+        <div className="font-jakarta space-x-10 font-semibold text-xl text-[#333652] hidden md:flex items-center ">
+          <a href="#home" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Home</a>
+          <a href="#about" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>About</a>
+          <a href="#partnerships" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Patners</a>
+          <a href="#contact" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Contact Us</a>
         </div>
       </nav>
 

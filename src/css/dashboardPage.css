@@ -1,21 +1,20 @@
+
+
 .first_section {
 	display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      width: 100%;
-
-
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
 /* Small top-left box */
 .item1 {
-  /* height: 100px; */
+  width: 600px;
 }
 
 /* Tall top-right box */
 .item2 {
   grid-row: span 2;
-      /* height: 220px; */
 }
 
 /* Tall bottom-left box */

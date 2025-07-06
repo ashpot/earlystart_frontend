@@ -1,53 +1,109 @@
 
-import React, { useState } from 'react';
-import { coursesData } from '../../data/DashboardContent';
-import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io'; // Added IoMdClose for clear button
-import { FaSearch } from 'react-icons/fa'; // Added search icon
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCourses } from '../../features/courses/coursesSlice';
+import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
+import { FaSearch } from 'react-icons/fa';
 import icon from '../../assets/images/dashboardicon.png';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const CourseList = () => {
+  const dispatch = useDispatch();
+  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Handle search input change
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, [dispatch]);
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    setCurrentPage(1); // Reset to first page on search
+    setCurrentPage(1);
   };
 
-  // Clear search input
   const handleClearSearch = () => {
     setSearchQuery('');
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1);
   };
 
-  // Filter courses based on search query
-  const filteredCourses = coursesData.filter((course) =>
+  const filteredCourses = courses.filter((course) =>
     course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
     course.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Calculate pagination data based on filtered courses
   const totalItems = filteredCourses.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentCourses = filteredCourses.slice(startIndex, endIndex);
 
-  // Handle page change
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // Handle items per page change
+  const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
     setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1);
   };
 
-  // Generate page numbers for pagination
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+
+  if (loading || courses.length === 6) {
+    return (
+      <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
+        <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
+          <div className="flex gap-2 items-center">
+            <Skeleton circle={true} width={20} height={20} />
+            <Skeleton width={120} height={20} />
+          </div>
+          <div className="space-x-4 flex items-center">
+            <Skeleton width={150} height={32} />
+            <Skeleton width={60} height={28} />
+          </div>
+        </div>
+        <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
+          <thead>
+            <tr className="border-b border-gray-300 font-bold text-sm text-left">
+              <th className="px-4 py-3 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...Array(4)].map((_, index) => (
+              <tr key={index} className="border-b border-tertiary font-normal text-xs">
+                <td className="py-3 px-4 border-r-2 border-tertiary">
+                  <div className="flex items-center gap-3">
+                    <Skeleton width={36} height={36} />
+                    <Skeleton width="60%" />
+                  </div>
+                </td>
+                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
+                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="40%" /></td>
+                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
+                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
+                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="40%" /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="flex justify-between items-center mt-4">
+          <Skeleton width={100} height={12} />
+          <div className="flex items-center space-x-2">
+            <Skeleton width={60} height={12} />
+            {[...Array(3)].map((_, index) => (
+              <Skeleton key={index} width={24} height={24} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
@@ -78,12 +134,11 @@ const CourseList = () => {
               onChange={handleItemsPerPageChange}
               className="bg-primary text-white text-xs font-semibold p-1 items-center rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
-              <option className="hover:bg-yellow-200 " value={5}>5</option>
-              <option className="hover:bg-yellow-200 " value={10}>10</option>
-              <option className="hover:bg-yellow-200 " value={20}>20</option>
-              <option className="hover:bg-yellow-200 " value={50}>50</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
             </select>
-            {/* <IoMdArrowDropdown className="absolute right-1 top-1/2 transform -translate-y-1/2 text-white pointer-events-none" /> */}
           </div>
         </div>
       </div>
@@ -105,10 +160,7 @@ const CourseList = () => {
           </thead>
           <tbody>
             {currentCourses.map((course, index) => (
-              <tr
-                key={index}
-                className="border-b border-tertiary font-normal text-xs"
-              >
+              <tr key={index} className="border-b border-tertiary font-normal text-xs">
                 <td className="py-3 px-4 border-r-2 border-tertiary">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary w-9 h-9 rounded-md"></div>
@@ -137,9 +189,7 @@ const CourseList = () => {
                 key={page}
                 onClick={() => handlePageChange(page)}
                 className={`px-2 py-1 rounded ${
-                  currentPage === page
-                    ? 'bg-primary text-white'
-                    : 'hover:bg-gray-200'
+                  currentPage === page ? 'bg-primary text-white' : 'hover:bg-gray-200'
                 }`}
               >
                 {page}

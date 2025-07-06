@@ -1,15 +1,22 @@
-import React, { useState, useMemo } from 'react';
-import { paymentsData } from '../../data/DashboardContent';
+
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPayments } from '../../features/payments/paymentsSlice';
 import icon from '../../assets/images/dashboardicon.png';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Payments = () => {
+  const dispatch = useDispatch();
+  const { data: payments = [], loading, error } = useSelector((state) => state.payments);
   const [timeFilter, setTimeFilter] = useState('1M');
 
-  // Filter paymentsData based on selected time period
+  useEffect(() => {
+    dispatch(fetchPayments());
+  }, [dispatch]);
+
   const filteredData = useMemo(() => {
-    // Placeholder filtering logic; adjust based on your paymentsData structure
-    return paymentsData.filter((payment) => {
-      // Assuming paymentsData has a 'date' field (e.g., '2025-01-01')
+    return payments.filter((payment) => {
       const paymentDate = payment.date ? new Date(payment.date) : null;
       const now = new Date();
       if (timeFilter === '1M' && paymentDate) {
@@ -21,10 +28,46 @@ const Payments = () => {
       if (timeFilter === '1Y' && paymentDate) {
         return paymentDate >= new Date(now.setFullYear(now.getFullYear() - 1));
       }
-      return true; // Fallback if no date field
+      return true;
     });
-  }, [timeFilter]);
+  }, [timeFilter, payments]);
 
+  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+
+  if (loading) {
+    return (
+      <section className="bg-white p-3 rounded-lg shadow-md font-inter">
+        <div className="flex justify-between items-center mb-1 border-b border-tertiaryDark pb-3 -mx-3 px-3">
+          <div className="flex gap-2 items-center">
+            <Skeleton circle={true} width={20} height={20} />
+            <Skeleton width={100} height={20} />
+          </div>
+          <div className="flex gap-2">
+            {[...Array(3)].map((_, index) => (
+              <Skeleton key={index} width={20} height={20} />
+            ))}
+          </div>
+        </div>
+        <table className="w-full text-left">
+          <thead>
+            <tr className="border-b font-bold text-sm">
+              <th className="py-2"><Skeleton width="50%" /></th>
+              <th className="py-2"><Skeleton width="50%" /></th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...Array(3)].map((_, index) => (
+              <tr key={index} className="border-b font-medium text-xs">
+                <td className="py-4"><Skeleton width="60%" /></td>
+                <td className="py-4"><Skeleton width="40%" /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    );
+  }
+ //if (payments.length === 0) {
   return (
     <section className="bg-white p-3 rounded-lg shadow-md font-inter">
       <div className="flex justify-between items-center mb-1 border-b border-tertiaryDark pb-3 -mx-3 px-3">
@@ -62,7 +105,7 @@ const Payments = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="2" className="py-4 text-center text-gray-500">
+              <td colSpan="2" className="py-4 text-xs text-center text-gray-500">
                 No payments available for the selected period.
               </td>
             </tr>
@@ -71,6 +114,10 @@ const Payments = () => {
       </table>
     </section>
   );
+ // }
+
+
+  //return "Hello world";
 };
 
 export default Payments;

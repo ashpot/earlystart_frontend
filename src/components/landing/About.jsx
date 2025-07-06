@@ -1,24 +1,35 @@
 import React from 'react'
-import { aboutList } from '../../data/InfoList';
+// import { aboutList } from '../../data/InfoList';
+import aboutImage from '../../assets/images/aboutImage.png';
+import aboutChild from '../../assets/images/aboutChild.png';
+import aboutExplore from '../../assets/images/aboutExplore.png';
+import aboutGet from '../../assets/images/aboutGet.png';
+import aboutLearn from '../../assets/images/aboutLearn.png';
 
 
 const About = () => {
   return (
-	<section id='about' className='font-inter max-w-[85%] mx-auto pt-10 pb-20 md:py-20 flex flex-col md:flex-row justify-between gap-10 mb-24 md:mb-0'>
-	  <div className='md:w-[55%] md:mt-12'>
-		<h4 className='font-bold text-primary text-sm md:text-3xl'>About Us</h4>
-		<h1 className='font-bold text-[28px] md:text-[50px] my-1'>What is Earlystart?</h1>
-		<p className='font-normal text-sm md:text-2xl md:leading-9'>Earlystart is a smart learning companion for young children — combining play and education to build confidence, curiosity, and foundational skills that last a lifetime.</p>
-		<p className='font-normal text-sm md:text-2xl md:leading-9'>We created Earlystart to support parents, teachers, and caregivers in giving kids the best beginning possible — right from home, anytime.</p>
+	<section id='about' className='pt-14 pb-2'>
+	  <div className='text-center mb-10 space-y-4 text-secondaryDark'>
+		<h4 className='font-bold text-base md:text-xl'>ABOUT US</h4>
+		<h1 className='font-bold text-2xl md:text-[39px]'>What is Earlystart?</h1>
 	  </div>
 
-	  <div className='grid grid-col-1 md:grid-cols-2 gap-6 font-inter md:w-2/5 ' >
-		{aboutList.map((key, index) => (
-		<div key={index} className='bg-secondary flex flex-col justify-center items-center rounded-3xl md:w-[200px] h-[200px] w-[90%] mx-auto'>
-			<div className='text-white mt-10 mb-3'>{key.icon}</div>
-			<p className='font-bold text-xl text-primary w-[80%] mx-auto pb-2'>{key.title}</p>
+	  <div className='flex flex-col md:flex-row justify-center ' >
+		<div className='w-[100%]'>
+			<img src={aboutImage} alt="About Image" className='' loading='lazy' />
 		</div>
-  		))}
+		<div className='w-[90%] mx-auto md:w-[65%] md:mx-0 md:mr-20 md:mt-20 font- text-center md:text-left text-[#333333]'>
+			<p className=''>Earlystart is a smart learning companion for young children — combining play and education to build confidence, curiosity, and foundational skills that last a lifetime.</p>
+			<p className='mt-6'>We created Earlystart to support parents, teachers, and caregivers in giving kids the best beginning possible — right from home, anytime.</p>
+			<div className='grid md:grid-cols-2 mt-8'>
+				<img src={aboutLearn} alt="About Image" className='cursor-pointer w-full rotate-3 z-10 transition-transform duration-300 hover:scale-110' loading='lazy' />
+				<img src={aboutGet} alt="About Image" className='cursor-pointer w-full z-0 md:z-10 -mt-14 md:-mt-0 transition-transform duration-300 hover:scale-110' loading='lazy' />
+				<img src={aboutExplore} alt="About Image" className='cursor-pointer -rotate-2 -mt-12 md:-mt-9 z-10 md:z-0 w-full transition-transform duration-300 hover:scale-110' loading='lazy' />
+				<img src={aboutChild} alt="About Image" className='cursor-pointer rotate-6 -mt-12 md:-mt-8 z-0 w-full transition-transform duration-300 hover:scale-110' loading='lazy' />
+			</div>
+		</div>
+		
 	  </div>
 
 	</section>

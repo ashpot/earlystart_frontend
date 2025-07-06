@@ -6,7 +6,7 @@ import Index from './pages/LandingPage';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-// import './css/styles.css'
+import './css/styles.css'
 
 // Protected Route Component
 // const ProtectedRoute = ({ children }) => {

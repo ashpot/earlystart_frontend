@@ -41,14 +41,14 @@ const Sidebar = () => {
 					</div>
 					{isUsersOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Students
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white rounded-2xl group'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Students
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Instructors
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Instructors
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Administrators
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Administrators
 							</li>
 						</ul>
 					)}
@@ -63,17 +63,20 @@ const Sidebar = () => {
 					</div>
 					{isCoursesOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Robotics
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Lesson
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> IoT
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Lessons
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Scratch
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Quiz
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Graphics
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Quiz
+							</li>
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Curriculums
 							</li>
 						</ul>
 					)}
@@ -88,14 +91,11 @@ const Sidebar = () => {
 					</div>
 					{isLiveClassesOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Google Meet
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Create Class
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Zoom
-							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> YouTube Live
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Classes
 							</li>
 						</ul>
 					)}
@@ -110,14 +110,11 @@ const Sidebar = () => {
 					</div>
 					{isCompetitionsOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Hackathons
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Competition
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Demos
-							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Online Competitions
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Competitions
 							</li>
 						</ul>
 					)}
@@ -133,11 +130,11 @@ const Sidebar = () => {
 					</div>
 					{isSubscriptionsOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Basic
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Subscriptions
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Pro
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Payments
 							</li>
 						</ul>
 					)}
@@ -153,14 +150,14 @@ const Sidebar = () => {
 					</div>
 					{isSupportsOpen && (
 						<ul className='pl-8 mt-2'>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Students
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Tickets
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Instructors
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> FAQs
 							</li>
-							<li className='flex items-center gap-3 py-2 font-normal text-sm hover:bg-gray-100 rounded'>
-								<span className='w-2 h-2 bg-white rounded-full'></span> Administrators
+							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Articles
 							</li>
 						</ul>
 					)}

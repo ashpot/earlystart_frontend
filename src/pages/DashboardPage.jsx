@@ -10,6 +10,7 @@ import TopInstructors from '../components/dashboard/TopInstructors';
 import NewStudents from '../components/dashboard/NewStudents';
 import Payments from '../components/dashboard/Payments';
 import CourseList from '../components/dashboard/CourseList';
+import 'react-loading-skeleton/dist/skeleton.css';
 import '../css/dashboardPage.css';
 
 const DashboardPage = () => {
