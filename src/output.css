@@ -631,6 +631,18 @@ body {
   top: 1.5rem;
 }
 
+.top-\[30\%\] {
+  top: 30%;
+}
+
+.-top-0 {
+  top: -0px;
+}
+
+.-top-\[100\%\] {
+  top: -100%;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -810,6 +822,14 @@ body {
 
 .mt-\[70px\] {
   margin-top: 70px;
+}
+
+.-mt-\[90\%\] {
+  margin-top: -90%;
+}
+
+.-mt-\[100\%\] {
+  margin-top: -100%;
 }
 
 .block {
@@ -1579,6 +1599,10 @@ body {
 
 .pt-\[70px\] {
   padding-top: 70px;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
 }
 
 .text-left {
