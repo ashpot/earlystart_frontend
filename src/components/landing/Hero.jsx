@@ -22,7 +22,7 @@ const Hero = () => {
 			{/* <img src={heroImage} alt="Hero Image" className="w-[95%] mx-auto rounded-3xl hidden md:block " loading='lazy'/> */}
 			{/* <img src={heroImagee} alt="Hero mobile Image" className="rounded-b-[30px] md:hidden block " loading='lazy'/> */}
 			<div className='text-center relative leading-10 text-white space-y-6'>
-				<img src={logo} alt="Hero mobile Image" className="md:hidden block absolute -mt-[100%] pl-6 " loading='lazy'/>
+				<img src={logo} alt="Hero mobile Image" className="md:hidden block absolute -mt-[95%] pl-6 " loading='lazy'/>
 				<div className='space-y-4 w-[90%] mx-auto'>
 					<h1 className='font-bold text-4xl md:text-6xl'>Give Your Child a <span className='text-primary italic'>Smart Start</span> </h1>
 					<h5 className='font-bold text-base md:text-4xl'>Learn, Play & Grow with Earlystart!</h5>
