@@ -2,7 +2,6 @@ import React from 'react';
 import { BiLogoPlayStore } from "react-icons/bi";
 import { GrAppleAppStore } from "react-icons/gr";
 import heroImage from '../../assets/images/heroImage.png';
-import heroImagee from '../../assets/images/heroImagee.png';
 import logo from '../../assets/images/earlystartlogo.png';
 
 const Hero = () => {
@@ -19,10 +18,13 @@ const Hero = () => {
 				paddingTop: '20px',
 				paddingBottom: '20px',
 			}}>
-			{/* <img src={heroImage} alt="Hero Image" className="w-[95%] mx-auto rounded-3xl hidden md:block " loading='lazy'/> */}
-			{/* <img src={heroImagee} alt="Hero mobile Image" className="rounded-b-[30px] md:hidden block " loading='lazy'/> */}
+			<img
+				src={logo}
+				alt="Hero mobile logo"
+				className="md:hidden absolute top-6 left-6"
+				loading='lazy'
+			/>
 			<div className='text-center relative leading-10 text-white space-y-6'>
-				<img src={logo} alt="Hero mobile Image" className="md:hidden block absolute -mt-[80%] pl-6 " loading='lazy'/>
 				<div className='space-y-4 w-[90%] mx-auto'>
 					<h1 className='font-bold text-4xl md:text-6xl'>Give Your Child a <span className='text-primary italic'>Smart Start</span> </h1>
 					<h5 className='font-bold text-base md:text-4xl'>Learn, Play & Grow with Earlystart!</h5>
