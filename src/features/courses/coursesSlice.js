@@ -1,12 +1,14 @@
 // src/features/courses/coursesSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
+
 
 export const fetchCourses = createAsyncThunk(
   'courses/fetchCourses', 
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/courses');
+      const response = await axios.get(`${API_BASE_URL}/api/v1/rest-auth/add_course/`);
       console.log('fetchCourses API response:', response.data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       return response.data || []; 

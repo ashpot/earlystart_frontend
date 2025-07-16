@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPayments } from '../../features/payments/paymentsSlice';
-import icon from '../../assets/images/dashboardicon.png';
+import { fetchPayments } from '../../../features/payments/paymentsSlice';
+import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

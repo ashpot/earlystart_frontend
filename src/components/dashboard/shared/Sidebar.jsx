@@ -1,4 +1,5 @@
 import React, { useState }  from 'react'
+import { NavLink, Link } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaPenToSquare } from "react-icons/fa6";
@@ -7,7 +8,7 @@ import { FaAward } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FaGreaterThan } from "react-icons/fa";
-import logo from '../../assets/images/earlystartlogo.png'
+import logo from '../../../assets/images/eslogo.png'
 
 const Sidebar = () => {
 	const [isUsersOpen, setIsUsersOpen] = useState(false);
@@ -23,14 +24,18 @@ const Sidebar = () => {
 
   return (
 	<div className='font-inter bg-primary text-secondaryDark w-60' >
-		<div className="flex items-center justify-center border-b py-[10px] cursor-pointer">
+		<div className="flex items-center justify-center border-b py-[11.2px] cursor-pointer">
 			<img src={logo} className='w-3/4' />
 		</div>
 
 		<nav className='p-7'>
 			<ul className='space-y-6 '>
 				<li className='font-normal text-[10px] pt-3 px-2'>MAIN</li>
-				<li className='flex items-center font-bold text-base gap-4 p-2'> <FaHome clas/> Dashboard</li>
+				<li className='flex items-center font-bold text-base gap-4 p-2'>
+					<Link to="/dashboard" className="flex items-center gap-4">
+						<FaHome /> Dashboard
+					</Link>
+		  		</li>
 
 				<li>
 					<div className='flex items-center justify-between cursor-pointer rounded-3xl hover:bg-white p-2' onClick={() => toggleDropdown(setIsUsersOpen)}>
@@ -42,13 +47,22 @@ const Sidebar = () => {
 					{isUsersOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white rounded-2xl group'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Students
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managestudents" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Students
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Instructors
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addInstructor" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Instructors
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Administrators
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addAdmin" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Administrators
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -64,19 +78,34 @@ const Sidebar = () => {
 					{isCoursesOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Lesson
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addLesson" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Add Lesson
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Lessons
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managelessons" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Lessons
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Quiz
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addQuiz" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Add Quiz
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Quiz
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managequiz" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Quiz
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Curriculums
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managecurriculum" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Curriculums
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -92,10 +121,16 @@ const Sidebar = () => {
 					{isLiveClassesOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Create Class
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addLiveClass" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Create Class
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Classes
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/manageliveclass" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Classes
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -111,10 +146,16 @@ const Sidebar = () => {
 					{isCompetitionsOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Add Competition
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addCompetition" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Add Competition
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Competitions
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managecompetitions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Competitions
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -131,10 +172,16 @@ const Sidebar = () => {
 					{isSubscriptionsOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Subscriptions
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managesubscriptions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Subscriptions
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Manage Payments
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/managepayment" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Manage Payments
+								</NavLink>
 							</li>
 						</ul>
 					)}
@@ -151,13 +198,22 @@ const Sidebar = () => {
 					{isSupportsOpen && (
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Tickets
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addTicket" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Tickets
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> FAQs
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addFaq" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									FAQs
+								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
-								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> Articles
+								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
+								<NavLink to="/dashboard/addArticle" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+									Articles
+								</NavLink>
 							</li>
 						</ul>
 					)}

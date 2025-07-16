@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchActiveLearnings } from '../../features/activeLearnings/activeLearningsSlice';
-import icon from '../../assets/images/dashboardicon.png';
+import { fetchActiveLearnings } from '../../../features/activeLearnings/activeLearningsSlice';
+import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

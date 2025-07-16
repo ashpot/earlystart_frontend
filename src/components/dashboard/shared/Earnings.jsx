@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchEarnings } from '../../features/earnings/earningsSlice';
+import { fetchEarnings } from '../../../features/earnings/earningsSlice';
 import { Chart as ChartJS, defaults } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
-import icon from '../../assets/images/dashboardicon.png';
+import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

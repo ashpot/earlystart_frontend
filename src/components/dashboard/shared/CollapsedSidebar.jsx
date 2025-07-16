@@ -6,12 +6,12 @@ import { FaVideo } from "react-icons/fa";
 import { FaAward } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
-import ESlogo from '../../assets/images/eslogowhite.png'
+import ESlogo from '../../../assets/images/eslogowhite.png'
 
 function CollapsedSidebar() {
   return (
     <div className='font-inter bg-primary text-secondaryDark w-20' >
-        <div className="flex items-center justify-center border-b py-[12.7px] cursor-pointer">
+        <div className="flex items-center justify-center border-b py-[14.7px] cursor-pointer">
           <img src={ESlogo} />
         </div>
      

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTopCategories } from '../../features/topCategories/topCategoriesSlice';
-import icon from '../../assets/images/dashboardicon.png';
+import { fetchTopCategories } from '../../../features/topCategories/topCategoriesSlice';
+import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

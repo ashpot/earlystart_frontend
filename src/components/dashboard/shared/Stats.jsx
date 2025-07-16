@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchStats } from '../../features/stats/statsSlice';
+import { fetchStats } from '../../../features/stats/statsSlice';
 import { FaCopy, FaUsers, FaPenToSquare } from 'react-icons/fa6';
 import { FaChalkboardTeacher } from 'react-icons/fa';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
@@ -58,7 +58,7 @@ const Stats = () => {
         <p className="text-sm font-semibold text-secondaryDark">Total Students</p>
         <h3 className="text-xs font-normal text-tertiary mb-4">{stats.totalStudents || 0}</h3>
         <Link
-          to="/dashboard/students"
+          to="/dashboard/managestudents"
           className="font-medium text-[10px] flex items-center text-[#07C851]"
         >
           View all <HiOutlineArrowNarrowRight className="ml-3" />
@@ -72,7 +72,7 @@ const Stats = () => {
         <p className="text-sm font-semibold text-secondaryDark">Total Instructors</p>
         <h3 className="text-xs font-normal text-tertiary mb-4">{stats.totalInstructors || 0}</h3>
         <Link
-          to="/dashboard/instructors"
+          to="/dashboard/addInstructor"
           className="font-medium text-[10px] flex items-center text-[#E68C0F]"
         >
           View all <HiOutlineArrowNarrowRight className="ml-3" />
@@ -86,7 +86,7 @@ const Stats = () => {
         <p className="text-sm font-semibold text-secondaryDark">Total Courses</p>
         <h3 className="text-xs font-normal text-tertiary mb-4">{stats.totalCourses || 0}</h3>
         <Link
-          to="/dashboard/courses"
+          to="/dashboard/courselist"
           className="font-medium text-[10px] flex items-center text-primary"
         >
           View all <HiOutlineArrowNarrowRight className="ml-3" />

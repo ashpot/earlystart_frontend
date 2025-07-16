@@ -17,7 +17,7 @@ const Hero = () => {
 				minHeight: '100vh',
 				paddingTop: '20px',
 				paddingBottom: '20px',
-			}}>
+			}}> 
 			<img
 				src={logo}
 				alt="Hero mobile logo"

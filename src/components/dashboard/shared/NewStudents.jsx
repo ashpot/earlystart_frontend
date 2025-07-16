@@ -133,9 +133,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchNewStudents } from '../../features/newStudents/newStudentsSlice';
-import icon from '../../assets/images/dashboardicon.png';
-import photo from '../../assets/images/photo.png';
+import { fetchNewStudents } from '../../../features/newStudents/newStudentsSlice';
+import icon from '../../../assets/images/dashboardicon.png';
+import photo from '../../../assets/images/photo.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

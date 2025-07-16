@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
-import DashboardNavbar from '../components/dashboard/DashboardNavbar';
-import Sidebar from '../components/dashboard/Sidebar';
-import CollapsedSidebar from '../components/dashboard/CollapsedSidebar';
-import TopCategories from '../components/dashboard/TopCategories';
-import Stats from '../components/dashboard/Stats';
-import ActiveLearning from '../components/dashboard/ActiveLearning';
-import Earnings from '../components/dashboard/Earnings';
-import TopInstructors from '../components/dashboard/TopInstructors';
-import NewStudents from '../components/dashboard/NewStudents';
-import Payments from '../components/dashboard/Payments';
-import CourseList from '../components/dashboard/CourseList';
+import DashboardNavbar from '../components/dashboard/shared/DashboardNavbar';
+import Sidebar from '../components/dashboard/shared/Sidebar';
+import CollapsedSidebar from '../components/dashboard/shared/CollapsedSidebar';
+import TopCategories from '../components/dashboard/shared/TopCategories';
+import Stats from '../components/dashboard/shared/Stats';
+import ActiveLearning from '../components/dashboard/shared/ActiveLearning';
+import Earnings from '../components/dashboard/shared/Earnings';
+import TopInstructors from '../components/dashboard/shared/TopInstructors';
+import NewStudents from '../components/dashboard/shared/NewStudents';
+import Payments from '../components/dashboard/shared/Payments';
+import CourseList from '../components/dashboard/shared/CourseList';
 import 'react-loading-skeleton/dist/skeleton.css';
-import '../css/dashboardPage.css';
+import '../css/dashboardPage.css';   
+// import { useNavigate } from 'react-router-dom';
+// import { useAuth } from '../context/AuthContext';
 
 const DashboardPage = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  // const navigate = useNavigate();
+  // const { logout } = useAuth();
+
+  // const handleLogout = () => {
+  //   logout();
+  //   navigate('/login');
+  // };
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prev) => !prev);

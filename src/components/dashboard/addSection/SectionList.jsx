@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../features/courses/coursesSlice';
+import { fetchCourses } from '../../../features/courses/coursesSlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
-import icon from '../../assets/images/dashboardicon.png';
+import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const CourseList = () => {
+const SectionList = () => {
   const dispatch = useDispatch();
   const { data: courses = [], loading, error } = useSelector((state) => state.courses);
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,7 +109,7 @@ const CourseList = () => {
     <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
       <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
         <h2 className="flex gap-2 text-base font-bold">
-          <img src={icon} alt="dashboard icon" /> Course List
+          <img src={icon} alt="dashboard icon" /> Section List
         </h2>
         <div className="space-x-4 flex items-center">
           <div className="relative">
@@ -144,34 +144,34 @@ const CourseList = () => {
       </div>
       {totalItems === 0 ? (
         <div className="text-center py-6 text-sm text-gray-500">
-          No courses found matching your search.
+          No Sections found matching your search.
         </div>
       ) : (
         <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
           <thead>
             <tr className="border-b border-gray-300 font-bold text-sm text-left">
-              <th className="px-4 py-3 border-r-2 border-tertiary">Course</th>
-              <th className="px-2 border-r-2 border-tertiary">Category</th>
-              <th className="px-2 border-r-2 border-tertiary">No. of Lessons</th>
-              <th className="px-2 border-r-2 border-tertiary">Date Added</th>
-              <th className="px-2 border-r-2 border-tertiary">Last Updated</th>
-              <th className="px-2 border-r-2 border-tertiary">No. of Students</th>
+              <th className="px-4 py-3 border-r-2 border-tertiary">Title</th>
+              <th className="px-2 border-r-2 border-tertiary">Description</th>
+              <th className="px-2 border-r-2 border-tertiary">Prize</th>
+              <th className="px-2 border-r-2 border-tertiary">Start Date</th>
+              <th className="px-2 border-r-2 border-tertiary">End Date</th>
+              <th className="px-2 border-r-2 border-tertiary">Action</th>
             </tr>
           </thead>
           <tbody>
-            {currentCourses.map((course, index) => (
+            {currentCourses.map((section, index) => (
               <tr key={index} className="border-b border-tertiary font-normal text-xs">
                 <td className="py-3 px-4 border-r-2 border-tertiary">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary w-9 h-9 rounded-md"></div>
-                    {course.course}
+                    {section.title}
                   </div>
                 </td>
-                <td className="p-2 border-r-2 border-tertiary">{course.category}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.lessons}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.dateAdded}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.lastUpdated}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.students}</td>
+                <td className="p-2 border-r-2 border-tertiary">{section.description}</td>
+                <td className="p-2 border-r-2 border-tertiary">{section.prize}</td>
+                <td className="p-2 border-r-2 border-tertiary">{section.startDate}</td>
+                <td className="p-2 border-r-2 border-tertiary">{section.endDate}</td>
+				<td className="p-2 border-r-2 border-tertiary">{section.action}</td>
               </tr>
             ))}
           </tbody>
@@ -202,4 +202,4 @@ const CourseList = () => {
   );
 };
 
-export default CourseList;
+export default SectionList;
