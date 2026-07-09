@@ -36,32 +36,33 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage />}/>
-          <Route path="dashboard/addCourse" element={<AddCoursePage />} />
-          <Route path="dashboard/addLesson" element={<AddLessonPage /> } />
-          <Route path="dashboard/addQuiz" element={<AddQuizPage /> } />
-          <Route path="dashboard/addCompetition" element={<AddCompetition /> } />
-          <Route path="dashboard/addSection" element={<AddSection /> } />
-          <Route path="dashboard/addTicket" element={<AddTicket /> } />
-          <Route path="dashboard/addArticle" element={<AddArticle /> } />
-          <Route path="dashboard/addFaq" element={<AddFaq /> } />
-          <Route path="dashboard/addInstructor" element={<AddInstructor /> } />
-          <Route path="dashboard/addLiveClass" element={<AddLiveClass /> } />
-          <Route path='dashboard/addAdmin' element={<AddAdmin />} />
-          <Route path='dashboard/courselist' element={<CourseListPage />} />
-          <Route path='dashboard/managepayment' element={<ManagePaymentPage />} />
-          <Route path='dashboard/managecurriculum' element={<ManageCurriculumPage />} />
-          <Route path='dashboard/managesubscriptions' element={<ManageSubscription />} />
-          <Route path='dashboard/managestudents' element={<ManageStudentPage />} />
-          <Route path='/dashboard/managelessons' element={<ManageLesson />} />
-          <Route path='/dashboard/manageliveclass' element={<ManageLiveClassPage />} />
-          <Route path='/dashboard/managequiz' element={<ManageQuizPage />} />
-          <Route path='/dashboard/managefaq' element={<ManageFaqPage />} />
-          <Route path='dashboard/manageticket' element={<ManageTicketPage/>} />
-          <Route path='/dashboard/managesection' element={<ManageSectionPage />} />
-          <Route path='dashboard/managecompetitions' element={<ManageCompetitionPage />} />
-          <Route path='dashboard/managearticles' element={<ManageArticle />} />
+          <Route path="/auth/signin" element={<LoginPage />} />
+          <Route path="/auth/logout" element={<LoginPage />} />
+          <Route path="/admin/dashboard" element={<DashboardPage />}/>
+          <Route path="admin/courses/add" element={<AddCoursePage />} />
+          <Route path="admin/lessons/add" element={<AddLessonPage /> } />
+          <Route path="admin/quizes/add" element={<AddQuizPage /> } />
+          <Route path="admin/competitions/add" element={<AddCompetition /> } />
+          <Route path="admin/sections/add" element={<AddSection /> } />
+          <Route path="admin/tickets/add" element={<AddTicket /> } />
+          <Route path="admin/articles/add" element={<AddArticle /> } />
+          <Route path="admin/faqs/add/" element={<AddFaq /> } />
+          <Route path="admin/instructors/add" element={<AddInstructor /> } />
+          <Route path="admin/live-classes/add" element={<AddLiveClass /> } />
+          <Route path='admin/admins/add' element={<AddAdmin />} />
+          <Route path='admin/courses' element={<CourseListPage />} />
+          <Route path='admin/payments' element={<ManagePaymentPage />} />
+          <Route path='admin/curriculums' element={<ManageCurriculumPage />} />
+          <Route path='admin/esubscriptions' element={<ManageSubscription />} />
+          <Route path='admin/students' element={<ManageStudentPage />} />
+          <Route path='/admin/lessons' element={<ManageLesson />} />
+          <Route path='/admin/live-classes' element={<ManageLiveClassPage />} />
+          <Route path='/admin/quizes' element={<ManageQuizPage />} />
+          <Route path='/admin/faqs' element={<ManageFaqPage />} />
+          <Route path='admin/tickets' element={<ManageTicketPage/>} />
+          <Route path='/admin/sections' element={<ManageSectionPage />} />
+          <Route path='admin/competitions' element={<ManageCompetitionPage />} />
+          <Route path='admin/articles' element={<ManageArticle />} />
           <Route path="/search-results" element={<SearchResultsPage />} />
         </Routes>
       </BrowserRouter>
@@ -95,12 +96,12 @@ export default App
 // import ManageCurriculumPage from './pages/ManageCurriculumPage';
 // import ManageSubscription from './pages/ManageSubscription';
 // import ManageStudentPage from './pages/ManageStudentPage';
-// import LessonList from './components/dashboard/addLesson/LessonList';
-// import LiveClassList from './components/dashboard/addLiveClass/LiveClassList';
-// import AdminList from './components/dashboard/addAdmin/AdminList';
-// import FaqList from './components/dashboard/addFAQ/FaqList';
-// import ManageTicket from './components/dashboard/ticketDetails/ManageTicket';
-// import SectionList from './components/dashboard/addSection/SectionList';
+// import LessonList from './components/admin/addLesson/LessonList';
+// import LiveClassList from './components/admin/addLiveClass/LiveClassList';
+// import AdminList from './components/admin/addAdmin/AdminList';
+// import FaqList from './components/admin/addFAQ/FaqList';
+// import ManageTicket from './components/admin/ticketDetails/ManageTicket';
+// import SectionList from './components/admin/addSection/SectionList';
 // import ManageQuizPage from './pages/ManageQuizPage';
 // import SearchResultsPage from './pages/SearchResultPage';
 // import './css/styles.css';
@@ -121,7 +122,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addCourse"
+//             path="admin/addCourse"
 //             element={
 //               <ProtectedRoute>
 //                 <AddCoursePage />
@@ -129,7 +130,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addLesson"
+//             path="admin/addLesson"
 //             element={
 //               <ProtectedRoute>
 //                 <AddLessonPage />
@@ -137,7 +138,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addQuiz"
+//             path="admin/addQuiz"
 //             element={
 //               <ProtectedRoute>
 //                 <AddQuizPage />
@@ -145,7 +146,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addCompetition"
+//             path="admin/addCompetition"
 //             element={
 //               <ProtectedRoute>
 //                 <AddCompetition />
@@ -153,7 +154,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addSection"
+//             path="admin/addSection"
 //             element={
 //               <ProtectedRoute>
 //                 <AddSection />
@@ -161,7 +162,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addTicket"
+//             path="admin/addTicket"
 //             element={
 //               <ProtectedRoute>
 //                 <AddTicket />
@@ -169,7 +170,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addArticle"
+//             path="admin/addArticle"
 //             element={
 //               <ProtectedRoute>
 //                 <AddArticle />
@@ -177,7 +178,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addFaq"
+//             path="admin/addFaq"
 //             element={
 //               <ProtectedRoute>
 //                 <AddFaq />
@@ -185,7 +186,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addInstructor"
+//             path="admin/addInstructor"
 //             element={
 //               <ProtectedRoute>
 //                 <AddInstructor />
@@ -193,7 +194,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addLiveClass"
+//             path="admin/addLiveClass"
 //             element={
 //               <ProtectedRoute>
 //                 <AddLiveClass />
@@ -201,7 +202,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/addAdmin"
+//             path="admin/addAdmin"
 //             element={
 //               <ProtectedRoute>
 //                 <AddAdmin />
@@ -209,7 +210,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/courselist"
+//             path="admin/courselist"
 //             element={
 //               <ProtectedRoute>
 //                 <CourseListPage />
@@ -217,7 +218,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/managepayment"
+//             path="admin/managepayment"
 //             element={
 //               <ProtectedRoute>
 //                 <ManagePaymentPage />
@@ -225,7 +226,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/managecurriculum"
+//             path="admin/managecurriculum"
 //             element={
 //               <ProtectedRoute>
 //                 <ManageCurriculumPage />
@@ -233,7 +234,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/managesubscriptions"
+//             path="admin/managesubscriptions"
 //             element={
 //               <ProtectedRoute>
 //                 <ManageSubscription />
@@ -241,7 +242,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="dashboard/managestudents"
+//             path="admin/managestudents"
 //             element={
 //               <ProtectedRoute>
 //                 <ManageStudentPage />
@@ -249,7 +250,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/managelesson"
+//             path="/admin/managelesson"
 //             element={
 //               <ProtectedRoute>
 //                 <LessonList />
@@ -257,7 +258,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/manageliveclass"
+//             path="/admin/manageliveclass"
 //             element={
 //               <ProtectedRoute>
 //                 <LiveClassList />
@@ -265,7 +266,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/managequiz"
+//             path="/admin/managequiz"
 //             element={
 //               <ProtectedRoute>
 //                 <ManageQuizPage />
@@ -273,7 +274,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/manageadministrator"
+//             path="/admin/manageadministrator"
 //             element={
 //               <ProtectedRoute>
 //                 <AdminList />
@@ -281,7 +282,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/managefaq"
+//             path="/admin/managefaq"
 //             element={
 //               <ProtectedRoute>
 //                 <FaqList />
@@ -289,7 +290,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/manageticket"
+//             path="/admin/manageticket"
 //             element={
 //               <ProtectedRoute>
 //                 <ManageTicket />
@@ -297,7 +298,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/managesection"
+//             path="/admin/managesection"
 //             element={
 //               <ProtectedRoute>
 //                 <SectionList />
@@ -305,7 +306,7 @@ export default App
 //             }
 //           />
 //           <Route
-//             path="/dashboard/course"
+//             path="/admin/course"
 //             element={
 //               <ProtectedRoute>
 //                 <CourseListPage />

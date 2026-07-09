@@ -17,13 +17,15 @@ import '../css/dashboardPage.css';
 
 const DashboardPage = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  // const navigate = useNavigate();
-  // const { logout } = useAuth();
+  //const navigate = useNavigate();
+  //const { logout } = useAuth();
 
-  // const handleLogout = () => {
-  //   logout();
-  //   navigate('/login');
-  // };
+  /*
+  const handleLogout = () => {
+     logout();
+     navigate('/login');
+   };
+   */
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prev) => !prev);

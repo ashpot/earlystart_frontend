@@ -21,13 +21,14 @@ const Plan = () => {
 				<div className='flex justify-center mb-3'>
 					<img src={planBasic} alt="Basic Plan" className='items-center ' loading='lazy' />
 				</div>
-				<h4 className='font-extrabold text-[19.96px] md:text-[25px] text-secondaryDark'>Basic</h4> 
+				<h4 className='font-extrabold text-[19.96px] md:text-[25px] text-secondaryDark'>Free</h4> 
 			</div>
 
 			<ul className='list-disc text-left w-[60%] mx-auto font-medium text-[#333333] text-base md:text-xl'>
-				<li>Access to all videos and lessons</li>
-				<li>Access to competitions and community forums</li>
-				<li>Support on week days</li>
+				<li>Limited access to courses and lessons</li>
+				<li>Limited access to coding playground and community forums</li>
+				<li>Limited access to AI CodeBuddy</li>
+				<li>Limited support on week days</li>
 			</ul>
 			
 			{/* <h5 className='text-secondaryDark font-extrabold text-[32px] flex justify-center items-center pt-[70px]'>
@@ -41,7 +42,7 @@ const Plan = () => {
 						inset 0px -4px 4px 0px #3535352E
 						`,
 					}}
-				>N10,000 <span className='font-semibold text-xs md:text-xl ml-2'>per year</span></button>
+				>FREE<span className='font-semibold text-xs md:text-xl ml-2'>for life</span></button>
 		</div>
 
 		<div className='bg-[#F7F1E5] py-10 rounded-3xl text-center'>
@@ -53,11 +54,14 @@ const Plan = () => {
 			</div>
 			
 			<ul className='list-disc text-left w-[60%] mx-auto font-medium text-[#333333] text-base md:text-xl'>
-				<li>Access to all videos and lessons</li>
-				<li>Access to competitions and community forums</li>
-				<li>Access to weekly live classes</li>
+				<li>Access to all courses and lessons</li>
+				<li>Access to all competitions and community forums</li>
+				<li>Access to weekly live classes, and other perks</li>
+				<li>Full Access to coding playground</li>
+				<li>Unlimited conversation with AI CodeBudddy</li>
 				<li>24/7 support</li>
 			</ul>
+			
 			
 			{/* <h5 className='text-[#E69F06] font-extrabold text-[32px] flex justify-center items-center pt-4'>
 				N25,000 <span className='font-semibold text-xs md:text-xl ml-2'>per year</span>
@@ -70,7 +74,7 @@ const Plan = () => {
 						inset 0px -4px 4px 0px #3535352E
 						`,
 				}}
-			>N25,000 <span className='font-semibold text-xs md:text-xl ml-2'>per year</span></button>
+			>N50,000 <span className='font-semibold text-xs md:text-xl ml-2'>per year</span></button>
 		</div>
 
 		

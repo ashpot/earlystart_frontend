@@ -120,15 +120,15 @@
 // export default LoginPage;
 
 import React, { useState } from 'react';
-import logo from '../assets/images/earlystartlogo.png';
+import logo from '../assets/images/eslogo.png';
 import { FaEyeSlash } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import { BASE_URL } from '../config';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false); // New loading state
@@ -148,16 +148,16 @@ const LoginPage = () => {
     setError('');
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/v1/rest-auth/admin_signin/`, {
-        username: formData.email,
+      const response = await axios.post(`${BASE_URL}/api/v1/rest-auth/admin/auth/signin/`, {
+        username: formData.username,
         password: formData.password,
       });
-      console.log('Login response:', response.data);
+      alert('Login response:', response.data);
       setMessage('Signed in successfully!');
       localStorage.setItem('token', response.data.token);
       // Delay redirect slightly to show success message
       setTimeout(() => {
-        window.location.href = '/dashboard';
+        window.location.href = '/admin/dashboard';
       }, 1000);
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed. Please try again.');
@@ -182,13 +182,13 @@ const LoginPage = () => {
         <form className="space-y-8" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-base font-bold">
-              Email address
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               placeholder=""
               className="mt-1 w-full p-2 border border-black rounded-md focus:outline-none"
@@ -231,6 +231,7 @@ const LoginPage = () => {
 
           <div className="flex justify-center">
             <button
+            
               type="submit"
               className={`w-40 py-2 px-4 font-bold text-base rounded-full flex items-center justify-center
                 ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-secondaryDark2 hover:bg-secondaryDark'} text-white`}

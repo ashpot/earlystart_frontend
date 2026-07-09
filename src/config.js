@@ -1,3 +1,4 @@
+export const LIVE_BASE_URL = 'https://api.earlystart.app'; 
+export const LOCAL_BASE_URL = 'http://127.0.0.1:8000';
 
-
-export const API_BASE_URL = 'https://www.earlystartapis.xyz'; // Change to test or production URL later
+export const BASE_URL = LOCAL_BASE_URL; // Change to test or production URL later
