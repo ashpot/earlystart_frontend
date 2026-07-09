@@ -69,21 +69,21 @@ const Footer = () => {
 					<div className='flex flex-col md:space-y-3  '>
 						<h4 className='font-semibold text-secondary text-xs md:text-[13px] mb-5'>NAVIGATION</h4>
 						<ul className='md:space-y-8 space-y-2 font-normal text-xs md:text-[16.8px]'>
-							<li><a href="">Home</a> </li>
-							<li><a href="">About Us</a> </li>
-							<li><a href="">Core Benefits</a> </li>
-							<li><a href="">Pricing</a> </li>
-							<li><a href="">Our Partners</a> </li>
+							<li><a href="/#home">Home</a> </li>
+							<li><a href="/#about">About Us</a> </li>
+							<li><a href="/#features">Core Benefits</a> </li>
+							<li><a href="/#pricing">Pricing</a> </li>
+							<li><a href="/#partnerships">Our Partners</a> </li>
 						</ul>
 					</div>
 
 					<div className='flex flex-col md:space-y-3 '>
 						<h4 className='font-semibold text-secondary text-xs md:text-[13px] mb-5'>HELP</h4>
 						<ul className='md:space-y-8 space-y-2 font-normal text-xs md:text-[16.8px]'>
-							<li><a href=''>Contact Us</a></li>
-							<li><a href="">FAQs</a> </li>
-							<li><a href="">Terms & Conditions</a> </li>
-							<li><a href="">Privacy Policy</a> </li>
+							<li><a href='/contact-us'>Contact Us</a></li>
+							<li><a href="/faqs">FAQs</a> </li>
+							<li><a href="/terms">Terms & Conditions</a> </li>
+							<li><a href="/privacy-policy">Privacy Policy</a> </li>
 						</ul>
 					</div>
 				</div>

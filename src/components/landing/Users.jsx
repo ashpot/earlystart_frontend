@@ -5,7 +5,7 @@ import userBg from '../../assets/images/userBg.png';
 
 const Users = () => {
   return (
-	<section className=''>
+	<section id='users' className=''>
 		<div className='relative w-full md:w-[95%] mx-auto rounded-b-[30px] md:rounded-3xl flex items-center justify-center' loading='lazy'
 				style={{
 					backgroundImage: `url(${userBg})`,

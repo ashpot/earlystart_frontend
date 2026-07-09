@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import Index from './pages/LandingPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import AddCoursePage from './pages/AddCoursePage';
@@ -36,6 +37,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/auth/signin" element={<LoginPage />} />
           <Route path="/auth/logout" element={<LoginPage />} />
           <Route path="/admin/dashboard" element={<DashboardPage />}/>

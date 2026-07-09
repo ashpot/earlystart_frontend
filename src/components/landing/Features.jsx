@@ -3,7 +3,7 @@ import { features } from '../../data/InfoList';
 
 const Features = () => {
   return (
-	<section className='max-w-[85%] mx-auto mb-20'>
+	<section id='features' className='max-w-[85%] mx-auto mb-20'>
 	  <div className='text-center mb-10 md:mb-20 space-y-4 text-secondaryDark'>
 		<h4 className='font-bold text-sm md:text-xl'>CORE BENEFITS</h4>
 		<h1 className='font-bold text-[22px] md:text-[39px]'>What Your Child Gets</h1>

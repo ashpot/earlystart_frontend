@@ -5,7 +5,7 @@ import planPro from '../../assets/images/planPro.png';
 
 const Plan = () => {
   return (
-	<section className='py-10 md:-mt-40'>
+	<section id='pricing' className='py-10 md:-mt-40'>
 	  <div className='text-center mb-10 md:mb-20 space-y-4 text-secondaryDark'>
 	  	<h4 className='font-bold text-sm md:text-xl'>PRICING PLAN</h4>
 		<h1 className='font-bold text-[22px] md:text-[39px]'>What It Costs</h1>
