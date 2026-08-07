@@ -1,11 +1,12 @@
 // src/features/earnings/earningsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 export const fetchEarnings = createAsyncThunk('earnings/fetchEarnings', 
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/earnings');
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/add_course/`);
       console.log('fetchEarnings API response:', response.data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       return response.data || []; 

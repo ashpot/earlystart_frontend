@@ -32,7 +32,7 @@ const Sidebar = () => {
 			<ul className='space-y-6 '>
 				<li className='font-normal text-[10px] pt-3 px-2'>MAIN</li>
 				<li className='flex items-center font-bold text-base gap-4 p-2'>
-					<Link to="/dashboard" className="flex items-center gap-4">
+					<Link to="/admin/dashboard" className="flex items-center gap-4">
 						<FaHome /> Dashboard
 					</Link>
 		  		</li>
@@ -48,19 +48,19 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white rounded-2xl group'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managestudents" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/students" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Students
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addInstructor" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/instructors" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Instructors
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addAdmin" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/administrators" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Administrators
 								</NavLink>
 							</li>
@@ -79,31 +79,31 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addLesson" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/lesson/add" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Add Lesson
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managelessons" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/lessons" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Lessons
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addQuiz" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/quiz/add" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Add Quiz
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managequiz" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/quizes" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Quiz
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managecurriculum" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/curriculums" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Curriculums
 								</NavLink>
 							</li>
@@ -122,13 +122,13 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addLiveClass" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/class/create" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Create Class
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/manageliveclass" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/classes" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Classes
 								</NavLink>
 							</li>
@@ -147,13 +147,13 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addCompetition" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/competition/add" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Add Competition
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managecompetitions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/competitions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Competitions
 								</NavLink>
 							</li>
@@ -173,13 +173,13 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managesubscriptions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/subscriptions" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Subscriptions
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/managepayment" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/payments" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Manage Payments
 								</NavLink>
 							</li>
@@ -199,19 +199,19 @@ const Sidebar = () => {
 						<ul className='pl-8 mt-2'>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addTicket" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/tickets" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Tickets
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addFaq" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/faqs" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									FAQs
 								</NavLink>
 							</li>
 							<li className='flex items-center gap-3 p-2 font-normal text-sm hover:bg-white group rounded-2xl'>
 								<span className='w-2 h-2 bg-white group-hover:bg-black rounded-full'></span> 
-								<NavLink to="/dashboard/addArticle" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
+								<NavLink to="/admin/articles" className={({ isActive }) => `text-secondaryDark ${isActive ? 'font-bold' : ''}`}>
 									Articles
 								</NavLink>
 							</li>

@@ -1,203 +1,219 @@
+import React, { useMemo, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import icon from "../../../assets/images/dashboardicon.png";
 
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../features/courses/coursesSlice';
-import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
-import { FaSearch } from 'react-icons/fa';
-import icon from '../../../assets/images/dashboardicon.png';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-
-const CourseList = () => {
-  const dispatch = useDispatch();
-  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
+const CourseList = ({ courses = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    dispatch(fetchCourses());
-  }, [dispatch]);
+  const filteredCourses = useMemo(() => {
+    return courses.filter((course) => {
+      const search = searchQuery.toLowerCase();
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-    setCurrentPage(1);
-  };
-
-  const handleClearSearch = () => {
-    setSearchQuery('');
-    setCurrentPage(1);
-  };
-
-  const filteredCourses = courses.filter((course) =>
-    course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      return (
+        course.title?.toLowerCase().includes(search) ||
+        course.category?.toLowerCase().includes(search) ||
+        course.instructor?.toLowerCase().includes(search)
+      );
+    });
+  }, [courses, searchQuery]);
 
   const totalItems = filteredCourses.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+
   const currentCourses = filteredCourses.slice(startIndex, endIndex);
 
-  const handlePageChange = (page) => setCurrentPage(page);
-  const handleItemsPerPageChange = (event) => {
-    setItemsPerPage(Number(event.target.value));
+  const clearSearch = () => {
+    setSearchQuery("");
     setCurrentPage(1);
   };
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
-
-  if (loading || courses.length === 6) {
-    return (
-      <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
-        <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
-          <div className="flex gap-2 items-center">
-            <Skeleton circle={true} width={20} height={20} />
-            <Skeleton width={120} height={20} />
-          </div>
-          <div className="space-x-4 flex items-center">
-            <Skeleton width={150} height={32} />
-            <Skeleton width={60} height={28} />
-          </div>
-        </div>
-        <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
-          <thead>
-            <tr className="border-b border-gray-300 font-bold text-sm text-left">
-              <th className="px-4 py-3 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-              <th className="px-2 border-r-2 border-tertiary"><Skeleton width="50%" /></th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(4)].map((_, index) => (
-              <tr key={index} className="border-b border-tertiary font-normal text-xs">
-                <td className="py-3 px-4 border-r-2 border-tertiary">
-                  <div className="flex items-center gap-3">
-                    <Skeleton width={36} height={36} />
-                    <Skeleton width="60%" />
-                  </div>
-                </td>
-                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
-                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="40%" /></td>
-                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
-                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="60%" /></td>
-                <td className="p-2 border-r-2 border-tertiary"><Skeleton width="40%" /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex justify-between items-center mt-4">
-          <Skeleton width={100} height={12} />
-          <div className="flex items-center space-x-2">
-            <Skeleton width={60} height={12} />
-            {[...Array(3)].map((_, index) => (
-              <Skeleton key={index} width={24} height={24} />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
-      <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
-        <h2 className="flex gap-2 text-base font-bold">
-          <img src={icon} alt="dashboard icon" /> Course List
+
+      {/* Header */}
+
+      <div className="flex justify-between items-center mb-8 border-b border-tertiaryDark pb-3 -mx-6 px-6">
+
+        <h2 className="flex gap-2 items-center text-base font-bold">
+          <img src={icon} alt="Courses" />
+          Course List
         </h2>
-        <div className="space-x-4 flex items-center">
+
+        <div className="flex items-center gap-4">
+
           <div className="relative">
+
+            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+
             <input
               type="text"
-              placeholder="Search here..."
+              placeholder="Search..."
               value={searchQuery}
-              onChange={handleSearchChange}
-              className="p-2 pl-8 pr-8 font-normal text-xs rounded-2xl border focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="pl-9 pr-8 py-2 text-xs border rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <FaSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
+
             {searchQuery && (
               <IoMdClose
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
-                onClick={handleClearSearch}
+                onClick={clearSearch}
+                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400"
               />
             )}
+
           </div>
-          <div className="relative">
-            <select
-              value={itemsPerPage}
-              onChange={handleItemsPerPageChange}
-              className="bg-primary text-white text-xs font-semibold p-1 items-center rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-            </select>
-          </div>
+
+          <select
+            value={itemsPerPage}
+            onChange={(e) => {
+              setItemsPerPage(Number(e.target.value));
+              setCurrentPage(1);
+            }}
+            className="bg-primary text-white text-xs rounded-md px-2 py-2"
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+
         </div>
+
       </div>
+
       {totalItems === 0 ? (
-        <div className="text-center py-6 text-sm text-gray-500">
-          No courses found matching your search.
+        <div className="py-10 text-center text-gray-500">
+          No courses found.
         </div>
       ) : (
-        <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
-          <thead>
-            <tr className="border-b border-gray-300 font-bold text-sm text-left">
-              <th className="px-4 py-3 border-r-2 border-tertiary">Course</th>
-              <th className="px-2 border-r-2 border-tertiary">Category</th>
-              <th className="px-2 border-r-2 border-tertiary">No. of Lessons</th>
-              <th className="px-2 border-r-2 border-tertiary">Date Added</th>
-              <th className="px-2 border-r-2 border-tertiary">Last Updated</th>
-              <th className="px-2 border-r-2 border-tertiary">No. of Students</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentCourses.map((course, index) => (
-              <tr key={index} className="border-b border-tertiary font-normal text-xs">
-                <td className="py-3 px-4 border-r-2 border-tertiary">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary w-9 h-9 rounded-md"></div>
-                    {course.course}
-                  </div>
-                </td>
-                <td className="p-2 border-r-2 border-tertiary">{course.category}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.lessons}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.dateAdded}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.lastUpdated}</td>
-                <td className="p-2 border-r-2 border-tertiary">{course.students}</td>
+        <>
+
+          <table className="w-full border-collapse">
+
+            <thead>
+
+              <tr className="bg-gray-50 text-sm">
+
+                <th className="text-left p-3">Course</th>
+
+                <th className="text-left p-3">Category</th>
+
+                <th className="text-center p-3">Lessons</th>
+
+                <th className="text-center p-3">Students</th>
+
+                <th className="text-center p-3">Instructor</th>
+
+                <th className="text-center p-3">Created</th>
+
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      <div className="flex justify-between items-center mt-4">
-        <span className="font-normal text-xs">
-          Showing {totalItems === 0 ? 0 : startIndex + 1}-{Math.min(endIndex, totalItems)} of {totalItems}
-        </span>
-        {totalItems > 0 && (
-          <div className="flex items-center font-medium text-sm space-x-2">
-            <span className="mr-4 text-xs font-normal">Pages</span>
-            {pageNumbers.map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                className={`px-2 py-1 rounded ${
-                  currentPage === page ? 'bg-primary text-white' : 'hover:bg-gray-200'
-                }`}
-              >
-                {page}
-              </button>
-            ))}
+
+            </thead>
+
+            <tbody>
+
+              {currentCourses.map((course) => (
+
+                <tr
+                  key={course.id}
+                  className="border-b text-sm hover:bg-gray-50"
+                >
+
+                  <td className="p-3">
+
+                    <div className="flex items-center gap-3">
+
+                      <div className="w-10 h-10 rounded bg-primary"></div>
+
+                      <div>
+
+                        <p className="font-semibold">
+                          {course.title}
+                        </p>
+
+                        <p className="text-xs text-gray-500">
+                          {course.code}
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td className="p-3">
+                    {course.category}
+                  </td>
+
+                  <td className="text-center p-3">
+                    {course.lessons}
+                  </td>
+
+                  <td className="text-center p-3">
+                    {course.students}
+                  </td>
+
+                  <td className="text-center p-3">
+                    {course.instructor}
+                  </td>
+
+                  <td className="text-center p-3">
+                    {course.created}
+                  </td>
+
+                </tr>
+
+              ))}
+
+            </tbody>
+
+          </table>
+
+          <div className="flex justify-between items-center mt-6">
+
+            <span className="text-xs text-gray-500">
+
+              Showing {startIndex + 1} -
+              {Math.min(endIndex, totalItems)} of {totalItems}
+
+            </span>
+
+            <div className="flex gap-2">
+
+              {Array.from(
+                { length: totalPages },
+                (_, i) => i + 1
+              ).map((page) => (
+
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-8 h-8 rounded ${
+                    currentPage === page
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 hover:bg-gray-200"
+                  }`}
+                >
+                  {page}
+                </button>
+
+              ))}
+
+            </div>
+
           </div>
-        )}
-      </div>
+
+        </>
+      )}
+
     </section>
   );
 };

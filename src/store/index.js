@@ -2,6 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import statsReducer from '../features/stats/statsSlice';
 import coursesReducer from '../features/courses/coursesSlice';
+import studentReducer from '../features/students/studentSlice';
 import earningsReducer from '../features/earnings/earningsSlice';
 import topCategoriesReducer from '../features/topCategories/topCategoriesSlice';
 import activeLearningsReducer from '../features/activeLearnings/activeLearningsSlice';
@@ -13,6 +14,7 @@ const store = configureStore({
   reducer: {
     stats: statsReducer,
     courses: coursesReducer,
+    students:studentReducer,
     earnings: earningsReducer,
     topCategories: topCategoriesReducer,
     activeLearnings: activeLearningsReducer,

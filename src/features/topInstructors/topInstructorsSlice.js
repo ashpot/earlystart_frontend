@@ -1,10 +1,11 @@
 // src/features/topInstructors/topInstructorsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 export const fetchTopInstructors = createAsyncThunk('topInstructors/fetchTopInstructors',  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/topInstructors');
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/add_course/`);
       console.log('fetchTopInstructors API response:', response.data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       return response.data || []; 

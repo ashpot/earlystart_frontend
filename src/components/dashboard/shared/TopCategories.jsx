@@ -6,18 +6,9 @@ import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const TopCategories = () => {
-  const dispatch = useDispatch();
-  const { data: topCategories = [], loading, error } = useSelector((state) => state.topCategories);
+const TopCategories = ({ categories }) => {
 
-  useEffect(() => {
-    dispatch(fetchTopCategories());
-  }, [dispatch]);
-
-  if (error) {
-    return <div className="p-4 text-red-500">Error: {error}</div>;
-  }
-
+  /*
   if (loading) {
     return (
       <section className="bg-white rounded-lg p-4 font-inter shadow-md">
@@ -42,8 +33,9 @@ const TopCategories = () => {
       </section>
     );
   }
+    */
 
-  if (topCategories.length === 0) {
+  if (categories.length === 0) {
     return (
       <section className="bg-white rounded-lg p-4 font-inter shadow-md">
         <div>
@@ -79,7 +71,7 @@ const TopCategories = () => {
           </Link>
         </div>
         <div className="grid grid-cols-4 gap-4 my-6">
-          {topCategories.map((category, index) => (
+          {categories.map((category, index) => (
             <Link
               key={index}
               to={`/dashboard/categories/${category.title.toLowerCase()}`}

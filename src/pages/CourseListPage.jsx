@@ -7,13 +7,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import '../css/dashboardPage.css';
 import CourseList from '../components/dashboard/shared/CourseList';
 
-const CourseListPage = () => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarCollapsed((prev) => !prev);
-  };
-
+const CourseListPage = ({lessons}) => {
+  
   return (
     <div className="flex min-h-screen">
       {isSidebarCollapsed ? <CollapsedSidebar /> : <Sidebar />}

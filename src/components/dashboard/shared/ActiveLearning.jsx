@@ -1,92 +1,23 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchActiveLearnings } from '../../../features/activeLearnings/activeLearningsSlice';
-import icon from '../../../assets/images/dashboardicon.png';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import icon from "../../../assets/images/dashboardicon.png";
 
-const truncateText = (text, maxLength = 6) => {
-  if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-  }
-  return text;
+const truncateText = (text = "", maxLength = 20) => {
+  return text.length > maxLength
+    ? `${text.substring(0, maxLength)}...`
+    : text;
 };
 
-const ActiveLearning = () => {
-  const dispatch = useDispatch();
-  const { data: activeLearnings = [], loading, error } = useSelector((state) => state.activeLearnings);
-
-  useEffect(() => {
-    dispatch(fetchActiveLearnings());
-  }, [dispatch]);
-
-  if (error) {
-    return <div className="p-4 text-red-500">Error: {error}</div>;
-  }
-
-  if (loading) {
-    return (
-      <section className="bg-white p-4 rounded-lg shadow-md font-inter">
-        <div className="flex justify-between items-center mb-1 border-b border-tertiaryDark pb-2 -mx-6 px-6">
-          <div className="flex gap-2 items-center">
-            <Skeleton circle={true} width={20} height={20} />
-            <Skeleton width={120} height={20} />
-          </div>
-          <Skeleton width={80} height={32} />
-        </div>
-        <table className="w-full text-left">
-          <thead>
-            <tr className="border-b text-sm">
-              <th className="py-2"><Skeleton width="50%" /></th>
-              <th className="py-2"><Skeleton width="50%" /></th>
-              <th className="py-2"><Skeleton width="50%" /></th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(3)].map((_, index) => (
-              <tr key={index} className="border-b text-xs">
-                <td className="py-2"><Skeleton width="60%" /></td>
-                <td className="py-2"><Skeleton width="40%" /></td>
-                <td className="py-2">
-                  <div className="flex items-center">
-                    <Skeleton width="80%" height={10} />
-                    <Skeleton width={30} height={12} className="ml-3" />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-    );
-  }
-
-  if (activeLearnings.length === 0) {
-    return (
-      <section className="bg-white p-4 rounded-lg shadow-md font-inter">
-        <div className="flex justify-between items-center mb-1 border-b border-tertiaryDark pb-2 -mx-6 px-6">
-          <h2 className="flex gap-2 text-base font-bold">
-            <img src={icon} alt="Active Learnings Icon" /> Active Learnings
-          </h2>
-          <Link
-            to="/dashboard/active-learnings"
-            className="bg-tertiary text-black font-medium text-sm px-4 py-2 rounded hover:bg-yellow-400"
-          >
-            View all
-          </Link>
-        </div>
-        <p className="text-center text-sm text-gray-500 py-4">No active learnings available</p>
-      </section>
-    );
-  }
-
+const ActiveLearning = ({ activeLearning = [] }) => {
   return (
     <section className="bg-white p-4 rounded-lg shadow-md font-inter">
+
       <div className="flex justify-between items-center mb-1 border-b border-tertiaryDark pb-2 -mx-6 px-6">
-        <h2 className="flex gap-2 text-base font-bold">
-          <img src={icon} alt="Active Learnings Icon" /> Active Learnings
+        <h2 className="flex gap-2 text-base font-bold items-center">
+          <img src={icon} alt="Active Learning" />
+          Active Learning
         </h2>
+
         <Link
           to="/dashboard/active-learnings"
           className="bg-tertiary text-black font-medium text-sm px-4 py-2 rounded hover:bg-yellow-400"
@@ -94,34 +25,68 @@ const ActiveLearning = () => {
           View all
         </Link>
       </div>
-      <table className="w-full text-left">
-        <thead>
-          <tr className="border-b text-sm">
-            <th className="py-2">User</th>
-            <th className="py-2">Course</th>
-            <th className="py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {activeLearnings.map((item, index) => (
-            <tr key={index} className="border-b text-xs">
-              <td className="py-2">{item.user}</td>
-              <td className="py-2">{truncateText(item.course)}</td>
-              <td className="py-2">
-                <div className="flex items-center">
-                  <div className="w-full bg-primaryLight rounded-full h-2.5">
-                    <div
-                      className="bg-primary h-2.5 rounded-full"
-                      style={{ width: `${item.status}%` }}
-                    ></div>
-                  </div>
-                  <span className="text-xs ml-3">{item.status}%</span>
-                </div>
-              </td>
+
+      {activeLearning.length === 0 ? (
+        <div className="py-8 text-center text-gray-500">
+          No active learning records available.
+        </div>
+      ) : (
+        <table className="w-full text-left">
+
+          <thead>
+            <tr className="border-b text-sm">
+              <th className="py-3">Student</th>
+              <th className="py-3">Course</th>
+              <th className="py-3">Progress</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {activeLearning.map((item) => (
+              <tr key={item.id} className="border-b text-xs">
+
+                <td className="py-3">
+                  {item.student?.full_name ||
+                    `${item.student?.first_name ?? ""} ${item.student?.last_name ?? ""}`}
+                </td>
+
+                <td className="py-3">
+                  {truncateText(
+                    item.lesson?.course?.title ||
+                    item.lesson?.title ||
+                    ""
+                  )}
+                </td>
+
+                <td className="py-3">
+
+                  <div className="flex items-center">
+
+                    <div className="w-full bg-primaryLight rounded-full h-2.5">
+
+                      <div
+                        className="bg-primary h-2.5 rounded-full transition-all duration-300"
+                        style={{
+                          width: `${item.progress || 0}%`,
+                        }}
+                      />
+
+                    </div>
+
+                    <span className="ml-3 text-xs font-medium whitespace-nowrap">
+                      {item.progress || 0}%
+                    </span>
+
+                  </div>
+
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+
+        </table>
+      )}
     </section>
   );
 };

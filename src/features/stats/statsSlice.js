@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 export const fetchStats = createAsyncThunk(
   'stats/fetchStats',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/stats'); // Fetch from root
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/add_course/`);
       console.log('fetchStats API response:', response.data); // Debug log
       // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 1500));

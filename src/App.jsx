@@ -16,6 +16,7 @@ import AddFaq from './pages/AddFaq'
 import AddTicket from './pages/AddTicket';
 import './css/styles.css'
 import AddInstructor from './pages/AddInstructor';
+import InstructorsList from './components/dashboard/addInstructors/InstructorsList';
 import AddAdmin from './pages/AddAdmin';
 import CourseListPage from './pages/CourseListPage';
 import ManagePaymentPage from './pages/ManagePaymentPage';
@@ -44,20 +45,22 @@ function App() {
           <Route path="/auth/logout" element={<LoginPage />} />
           <Route path="/admin/dashboard" element={<DashboardPage />}/>
           <Route path="admin/courses/add" element={<AddCoursePage />} />
-          <Route path="admin/lessons/add" element={<AddLessonPage /> } />
-          <Route path="admin/quizes/add" element={<AddQuizPage /> } />
-          <Route path="admin/competitions/add" element={<AddCompetition /> } />
+          <Route path="admin/lesson/add" element={<AddLessonPage /> } />
+          <Route path="admin/quiz/add" element={<AddQuizPage /> } />
+          <Route path="admin/competition/add" element={<AddCompetition /> } />
           <Route path="admin/sections/add" element={<AddSection /> } />
           <Route path="admin/tickets/add" element={<AddTicket /> } />
           <Route path="admin/articles/add" element={<AddArticle /> } />
           <Route path="admin/faqs/add/" element={<AddFaq /> } />
+
           <Route path="admin/instructors/add" element={<AddInstructor /> } />
-          <Route path="admin/live-classes/add" element={<AddLiveClass /> } />
+          <Route path="admin/instructors" element={<InstructorsList /> } />
+          <Route path="admin/class/create" element={<AddLiveClass /> } />
           <Route path='admin/admins/add' element={<AddAdmin />} />
           <Route path='admin/courses' element={<CourseListPage />} />
           <Route path='admin/payments' element={<ManagePaymentPage />} />
           <Route path='admin/curriculums' element={<ManageCurriculumPage />} />
-          <Route path='admin/esubscriptions' element={<ManageSubscription />} />
+          <Route path='admin/subscriptions' element={<ManageSubscription />} />
           <Route path='admin/students' element={<ManageStudentPage />} />
           <Route path='/admin/lessons' element={<ManageLesson />} />
           <Route path='/admin/live-classes' element={<ManageLiveClassPage />} />

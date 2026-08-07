@@ -107,10 +107,12 @@ import { useNavigate } from 'react-router-dom';
 import photo from '../../../assets/images/photo.png';
 
 const DashboardNavbar = ({ toggleSidebar, isSidebarCollapsed }) => {
+  
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const user = localStorage.getItem('user')
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -182,13 +184,13 @@ const DashboardNavbar = ({ toggleSidebar, isSidebarCollapsed }) => {
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-4 cursor-pointer" ref={dropdownRef} onClick={toggleDropdown}>
             <img
-              src={photo}
+              src={user.photo}
               alt="User"
               className="w-8 h-8 rounded-full"
             />
             <div className="flex flex-col">
-              <span className="font-bold text-base">Psalms Kalu</span>
-              <span className="font-normal text-[13px]">Administrator</span>
+              <span className="font-bold text-base">{user.first_name}</span>
+              <span className="font-normal text-[13px]">{user.role}</span>
             </div>
             <FaAngleDown className="text-secondary text-xl cursor-pointer" />
           </div>

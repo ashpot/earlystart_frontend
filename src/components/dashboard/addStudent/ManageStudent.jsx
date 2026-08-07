@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../features/courses/coursesSlice';
+import { fetchStudents } from '../../../features/students/studentSlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 import icon from '../../../assets/images/dashboardicon.png';
@@ -10,15 +10,18 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const ManageStudent = () => {
   const dispatch = useDispatch();
-  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
+  const { data: students = [], loading, error } = useSelector((state) => state.students);
+  console.log("Students:", students);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-	dispatch(fetchCourses());
+	console.log("Dispatching fetchStudents...");
+	dispatch(fetchStudents());
   }, [dispatch]);
 
+  
   const handleSearchChange = (event) => {
 	setSearchQuery(event.target.value);
 	setCurrentPage(1);
@@ -29,16 +32,16 @@ const ManageStudent = () => {
 	setCurrentPage(1);
   };
 
-  const filteredCourses = courses.filter((course) =>
-	course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
-	course.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredStudents = students.filter((student) =>
+	student.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+	student.last_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const totalItems = filteredCourses.length;
+  const totalItems = filteredStudents.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentCourses = filteredCourses.slice(startIndex, endIndex);
+  const currentStudents = filteredStudents.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
@@ -50,7 +53,7 @@ const ManageStudent = () => {
 
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
-  if (loading || courses.length === 6) {
+  if (loading || students.length === 6) {
 	return (
 	  <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
 		<div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
@@ -150,28 +153,28 @@ const ManageStudent = () => {
 		<table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
 		  <thead>
 			<tr className="border-b border-gray-300 font-bold text-sm text-left">
-			  <th className="px-4 py-3 border-r-2 border-tertiary">Title</th>
-			  <th className="px-2 border-r-2 border-tertiary">Description</th>
-			  <th className="px-2 border-r-2 border-tertiary">Prize</th>
-			  <th className="px-2 border-r-2 border-tertiary">Start Date</th>
-			  <th className="px-2 border-r-2 border-tertiary">End Date</th>
-			  <th className="px-2 border-r-2 border-tertiary">Action</th>
+			  <th className="px-4 py-3 border-r-2 border-tertiary">Fullname</th>
+			  <th className="px-2 border-r-2 border-tertiary">Age Level</th>
+			  <th className="px-2 border-r-2 border-tertiary">Email</th>
+			  <th className="px-2 border-r-2 border-tertiary">Phone</th>
+			  <th className="px-2 border-r-2 border-tertiary">Plan</th>
+			  <th className="px-2 border-r-2 border-tertiary">Date Joined</th>
 			</tr>
 		  </thead>
 		  <tbody>
-			{currentCourses.map((student, index) => (
+			{currentStudents.map((student, index) => (
 			  <tr key={index} className="border-b border-tertiary font-normal text-xs">
 				<td className="py-3 px-4 border-r-2 border-tertiary">
 				  <div className="flex items-center gap-3">
 					<div className="bg-primary w-9 h-9 rounded-md"></div>
-					{student.title}
+					{student.first_name} {student.last_name}
 				  </div>
 				</td>
-				<td className="p-2 border-r-2 border-tertiary">{student.description}</td>
-				<td className="p-2 border-r-2 border-tertiary">{student.prize}</td>
-				<td className="p-2 border-r-2 border-tertiary">{student.startDate}</td>
-				<td className="p-2 border-r-2 border-tertiary">{student.endDate}</td>
-				<td className="p-2 border-r-2 border-tertiary">{student.action}</td>
+				<td className="p-2 border-r-2 border-tertiary">{student.age_level.title}</td>
+				<td className="p-2 border-r-2 border-tertiary">{student.email}</td>
+				<td className="p-2 border-r-2 border-tertiary">{student.phone}</td>
+				<td className="p-2 border-r-2 border-tertiary">{student.plan}</td>
+				<td className="p-2 border-r-2 border-tertiary">{student.date_joined}</td>
 			  </tr>
 			))}
 		  </tbody>

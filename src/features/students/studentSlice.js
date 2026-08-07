@@ -1,4 +1,4 @@
-// src/features/courses/coursesSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../config';
@@ -6,8 +6,8 @@ import { BASE_URL } from '../../config';
 const token = localStorage.getItem('token');
 
 
-export const fetchCourses = createAsyncThunk(
-  'courses/fetchCourses', 
+export const fetchStudents = createAsyncThunk(
+  'students/fetchStudents', 
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/students/`, {
@@ -15,17 +15,19 @@ export const fetchCourses = createAsyncThunk(
             Authorization: `Token ${token}`,
           },
         });
-      console.log('fetchCourses API response:', response.data);
+      console.log('fetchStudents API response:', response.data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       return response.data || []; 
     } catch (error) {
-      console.log('fetchCourses error:', error);
+      console.log('fetchStudents error:', error);
       return rejectWithValue(error.message);
     }
 });
 
-const coursesSlice = createSlice({
-  name: 'courses',
+
+
+const studentsSlice = createSlice({
+  name: 'students',
   initialState: {
     data: [],
     loading: false,
@@ -34,21 +36,21 @@ const coursesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCourses.pending, (state) => {
+      .addCase(fetchStudents.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCourses.fulfilled, (state, action) => {
+      .addCase(fetchStudents.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        console.log('fetchCourses fulfilled, state.data:', action.payload)
+        console.log('fetchStudents fulfilled, state.data:', action.payload)
       })
-      .addCase(fetchCourses.rejected, (state, action) => {
+      .addCase(fetchStudents.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Failed to fetch categories';
-        console.log('fetchCourses rejected, error:', action.payload)
+        console.log('fetchStudents rejected, error:', action.payload)
       });
   },
 });
 
-export default coursesSlice.reducer;
+export default studentsSlice.reducer;
