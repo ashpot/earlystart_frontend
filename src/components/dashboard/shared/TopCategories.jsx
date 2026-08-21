@@ -7,7 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const TopCategories = ({ categories }) => {
-
+  console.log(categories);
   /*
   if (loading) {
     return (
@@ -77,7 +77,9 @@ const TopCategories = ({ categories }) => {
               to={`/dashboard/categories/${category.title.toLowerCase()}`}
               className="border border-tertiary rounded-lg w-full h-40 p-4"
             >
-              <div className="bg-primary rounded-lg w-[84px] h-[54px] my-auto mx-auto mb-2"></div>
+              <div className="bg-primary rounded-lg w-[84px] h-[54px] my-auto mx-auto mb-2 text-center overflow-hidden">
+                <img src={category.image}  className="w-[80px] rounded-full object-cover"/>
+              </div>
               <div className="flex flex-col text-center items-center gap-2 max-w-full">
                 <h3 className="text-sm font-semibold text-black">{category.title}</h3>
                 <p className="text-tertiary text-xs">{category.courseCount} courses</p>

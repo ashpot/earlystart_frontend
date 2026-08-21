@@ -1,22 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSections } from '../../../features/sections/sectionSlice';
+import { fetchCategories } from '../../../features/categories/categorySlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 import icon from '../../../assets/images/dashboardicon.png';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const SectionList = () => {
+const ManageCategory = () => {
   const dispatch = useDispatch();
-  const { data: sections = [], loading, error } = useSelector((state) => state.sections);
+  const { data: categories = [], loading, error } = useSelector((state) => state.categories);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    dispatch(fetchSections());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   const handleSearchChange = (event) => {
@@ -29,15 +29,15 @@ const SectionList = () => {
     setCurrentPage(1);
   };
 
-  const filteredSections = sections.filter((section) =>
-    section.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredCategories = categories.filter((category) =>
+    category.title.toLowerCase().includes(searchQuery.toLowerCase()) 
   );
 
-  const totalItems = filteredSections.length;
+  const totalItems = filteredCategories.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentSections = filteredSections.slice(startIndex, endIndex);
+  const currentCategorys = filteredCategories.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
@@ -49,7 +49,7 @@ const SectionList = () => {
 
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
-  if (loading || sections.length === 6) {
+  if (loading || categories.length === 6) {
     return (
       <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
         <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
@@ -108,7 +108,7 @@ const SectionList = () => {
     <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
       <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
         <h2 className="flex gap-2 text-base font-bold">
-          <img src={icon} alt="dashboard icon" /> Section List
+          <img src={icon} alt="dashboard icon" /> Category List
         </h2>
         <div className="space-x-4 flex items-center">
           <div className="relative">
@@ -143,38 +143,33 @@ const SectionList = () => {
       </div>
       {totalItems === 0 ? (
         <div className="text-center py-6 text-sm text-gray-500">
-          No Sections found matching your search.
+          No Categories found matching your search.
         </div>
       ) : (
-        <div className="w-full overflow-x-auto" role="region" tabIndex="0">
-        <table className="w-full mx-auto text-left border-l-2 border-t-2 border-collapse">
+        <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
           <thead>
             <tr className="border-b border-gray-300 font-bold text-sm text-left">
-              <th className="px-4 py-3 border-r-2 border-tertiary whitespace-nowrap">Title</th>
-              <th className="px-2 border-r-2 border-tertiary whitespace-nowrap">Course</th>
-              <th className="px-2 border-r-2 border-tertiary whitespace-nowrap">Description</th>
-              <th className="px-2 border-r-2 border-tertiary whitespace-nowrap">Action</th>
-              
+              <th className="px-4 py-3 border-r-2 border-tertiary">Title</th>
+              <th className="px-2 border-r-2 border-tertiary">Description</th>
+              <th className="px-2 border-r-2 border-tertiary">Image</th>
+              <th className="px-2 border-r-2 border-tertiary">Action</th>
             </tr>
           </thead>
           <tbody>
-            {currentSections.map((section, index) => (
+            {currentCategorys.map((category, index) => (
               <tr key={index} className="border-b border-tertiary font-normal text-xs">
-                <td className="py-3 px-4 border-r-2 border-tertiary whitespace-nowrap">
-                  
-                    
-                    {section.title}
-                  
+                <td className="py-3 px-4 border-r-2 border-tertiary">
+                  <div className="flex items-center gap-3">
+                    {category.title}
+                  </div>
                 </td>
-                <td className="p-2 border-r-2 border-tertiary whitespace-nowrap">{section.course.title}</td>
-                <td className="p-2 border-r-2 border-tertiary whitespace-nowrap">{section.description}</td>
-                
-				<td className="p-2 border-r-2 border-tertiary whitespace-nowrap">{section.action}</td>
+                <td className="p-2 border-r-2 border-tertiary">{category.description}</td>
+                <td className="p-2 border-r-2 border-tertiary">{category.image}</td>
+				<td className="p-2 border-r-2 border-tertiary">{category.action}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        </div>
       )}
       <div className="flex justify-between items-center mt-4">
         <span className="font-normal text-xs">
@@ -201,4 +196,4 @@ const SectionList = () => {
   );
 };
 
-export default SectionList;
+export default ManageCategory;

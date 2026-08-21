@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../features/courses/coursesSlice';
+import { fetchLessons } from '../../../features/lessons/lessonSlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 import icon from '../../../assets/images/dashboardicon.png';
@@ -10,13 +10,13 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const LessonList = () => {
   const dispatch = useDispatch();
-  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
+  const { data: lessons = [], loading, error } = useSelector((state) => state.lessons);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    dispatch(fetchCourses());
+    dispatch(fetchLessons());
   }, [dispatch]);
 
   const handleSearchChange = (event) => {
@@ -29,16 +29,16 @@ const LessonList = () => {
     setCurrentPage(1);
   };
 
-  const filteredCourses = courses.filter((course) =>
-    course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredLessons = lessons.filter((lesson) =>
+    lesson.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    lesson.course.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const totalItems = filteredCourses.length;
+  const totalItems = filteredLessons.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentCourses = filteredCourses.slice(startIndex, endIndex);
+  const currentLessons = filteredLessons.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
@@ -50,7 +50,7 @@ const LessonList = () => {
 
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
-  if (loading || courses.length === 6) {
+  if (loading || lessons.length === 6) {
     return (
       <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
         <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
@@ -151,26 +151,40 @@ const LessonList = () => {
           <thead>
             <tr className="border-b border-gray-300 font-bold text-sm text-left">
               <th className="px-4 py-3 border-r-2 border-tertiary">Title</th>
-              <th className="px-2 border-r-2 border-tertiary">Category</th>
+              <th className="px-2 border-r-2 border-tertiary">Course</th>
+              <th className="px-2 border-r-2 border-tertiary">Description</th>
               <th className="px-2 border-r-2 border-tertiary">Video</th>
               <th className="px-2 border-r-2 border-tertiary">Duration</th>
-              <th className="px-2 border-r-2 border-tertiary">Age Range</th>
               <th className="px-2 border-r-2 border-tertiary">Action</th>
             </tr>
           </thead>
           <tbody>
-            {currentCourses.map((lesson, index) => (
+            {currentLessons.map((lesson, index) => (
               <tr key={index} className="border-b border-tertiary font-normal text-xs">
                 <td className="py-3 px-4 border-r-2 border-tertiary">
                   <div className="flex items-center gap-3">
-                    <div className="bg-primary w-9 h-9 rounded-md"></div>
                     {lesson.title}
                   </div>
                 </td>
-                <td className="p-2 border-r-2 border-tertiary">{lesson.category}</td>
-                <td className="p-2 border-r-2 border-tertiary">{lesson.video}</td>
+                <td className="p-2 border-r-2 border-tertiary">{lesson.course.title}</td>
+                <td className="p-2 border-r-2 border-tertiary">{lesson.description}</td>
+                <td className="p-2 border-r-2 border-tertiary">
+  {lesson.video_url ? (
+    <a
+      href={lesson.video_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-600 hover:underline"
+    >
+      {lesson.video_url.length > 50
+        ? `${lesson.video_url.substring(0, 50)}...`
+        : lesson.video_url}
+    </a>
+  ) : (
+    "-"
+  )}
+</td>  
                 <td className="p-2 border-r-2 border-tertiary">{lesson.duration}</td>
-                <td className="p-2 border-r-2 border-tertiary">{lesson.ageRange}</td>
 				<td className="p-2 border-r-2 border-tertiary">{lesson.action}</td>
               </tr>
             ))}

@@ -1,31 +1,27 @@
-// src/features/courses/coursesSlice.js
+// src/features/Lessons/LessonsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../config';
-
 const token = localStorage.getItem('token');
 
-
-export const fetchCourses = createAsyncThunk(
-  'courses/fetchCourses', 
-  async (_, { rejectWithValue }) => {
+export const fetchLessons = createAsyncThunk('Lessons/fetchLessons',  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/courses/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/lessons/`, {
           headers: {
             Authorization: `Token ${token}`,
           },
         });
-      console.log('fetchCourses API response:', response.data);
+      console.log('fetchLessons API response:', response.data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       return response.data || []; 
     } catch (error) {
-      console.log('fetchCourses error:', error);
+      console.log('fetchLessons error:', error);
       return rejectWithValue(error.message);
     }
 });
 
-const coursesSlice = createSlice({
-  name: 'courses',
+const LessonsSlice = createSlice({
+  name: 'Lessons',
   initialState: {
     data: [],
     loading: false,
@@ -34,21 +30,21 @@ const coursesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCourses.pending, (state) => {
+      .addCase(fetchLessons.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCourses.fulfilled, (state, action) => {
+      .addCase(fetchLessons.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        console.log('fetchCourses fulfilled, state.data:', action.payload)
+        console.log('fetchLessons fulfilled, state.data:', action.payload);
       })
-      .addCase(fetchCourses.rejected, (state, action) => {
+      .addCase(fetchLessons.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Failed to fetch categories';
-        console.log('fetchCourses rejected, error:', action.payload)
+        console.log('fetchLessons rejected, error:', action.payload);
       });
   },
 });
 
-export default coursesSlice.reducer;
+export default LessonsSlice.reducer;

@@ -27,10 +27,7 @@ const PaymentSuccessful = () => {
         <h1 className="text-4xl md:text-6xl font-bold text-[#1E1E1E] mb-10">Payment Successful</h1>
         <p className="text-lg font-medium mb-5">
           Congratulations! Your last payment was successful
-        </p>
-
-
-      
+        </p>      
       </main>
     </div>
     

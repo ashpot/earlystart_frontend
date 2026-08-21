@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../features/courses/coursesSlice';
+import { fetchQuizzes } from '../../../features/quiz/quizSlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 import icon from '../../../assets/images/dashboardicon.png';
@@ -10,13 +10,13 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const ManageQuiz = () => {
   const dispatch = useDispatch();
-  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
+  const { data: quizzes = [], loading, error } = useSelector((state) => state.quizzes);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    dispatch(fetchCourses());
+    dispatch(fetchQuizzes());
   }, [dispatch]);
 
   const handleSearchChange = (event) => {
@@ -29,16 +29,16 @@ const ManageQuiz = () => {
     setCurrentPage(1);
   };
 
-  const filteredCourses = courses.filter((course) =>
-    course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredQuizzes = quizzes.filter((quiz) =>
+    quiz.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  quiz.category.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const totalItems = filteredCourses.length;
+  const totalItems = filteredQuizzes.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentCourses = filteredCourses.slice(startIndex, endIndex);
+  const currentQuizzes = filteredQuizzes.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
@@ -50,7 +50,7 @@ const ManageQuiz = () => {
 
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
-  if (loading || courses.length === 6) {
+  if (loading || quizzes.length === 6) {
     return (
       <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
         <div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">
@@ -150,30 +150,36 @@ const ManageQuiz = () => {
         <table className="w-[97%] mx-auto text-left border-l-2 border-t-2 border-collapse">
           <thead>
             <tr className="border-b border-gray-300 font-bold text-sm text-left">
-              <th className="px-4 py-3 border-r-2 border-tertiary">Question</th>
-              <th className="px-2 border-r-2 border-tertiary">Lesson</th>
-              <th className="px-2 border-r-2 border-tertiary">Section</th>
-              <th className="px-2 border-r-2 border-tertiary">Option A</th>
-              <th className="px-2 border-r-2 border-tertiary">Option B</th>
-              <th className="px-2 border-r-2 border-tertiary">Option C</th>
-			  <th className="px-2 border-r-2 border-tertiary">Option D</th>
+              <th className="px-4 py-3 border-r-2 border-tertiary">Title</th>
+              <th className="px-2 border-r-2 border-tertiary">Category</th>
+              <th className="px-2 border-r-2 border-tertiary">Age Level</th>
+              <th className="px-2 border-r-2 border-tertiary">Pass mark</th>
+              <th className="px-2 border-r-2 border-tertiary">Allow Multiple Attempts</th>
+			        <th className="px-2 border-r-2 border-tertiary">Time Limit</th>
+              <th className="px-2 border-r-2 border-tertiary">Show Results Immediately</th>
+              <th className="px-2 border-r-2 border-tertiary">Shuffle Question</th>
+              <th className="px-2 border-r-2 border-tertiary">Shuffle Answer</th>
+              <th className="px-2 border-r-2 border-tertiary">Action</th>
             </tr>
           </thead>
           <tbody>
-            {currentCourses.map((quiz, index) => (
+            {currentQuizzes.map((quiz, index) => (
               <tr key={index} className="border-b border-tertiary font-normal text-xs">
                 <td className="py-3 px-4 border-r-2 border-tertiary">
                   <div className="flex items-center gap-3">
-                    <div className="bg-primary w-9 h-9 rounded-md"></div>
-                    {quiz.question}
+                    
+                    {quiz.title}
                   </div>
                 </td>
-                <td className="p-2 border-r-2 border-tertiary">{quiz.lesson}</td>
-                <td className="p-2 border-r-2 border-tertiary">{quiz.section}</td>
-                <td className="p-2 border-r-2 border-tertiary">{quiz.optionA}</td>
-                <td className="p-2 border-r-2 border-tertiary">{quiz.optionB}</td>
-				<td className="p-2 border-r-2 border-tertiary">{quiz.optionC}</td>
-				<td className="p-2 border-r-2 border-tertiary">{quiz.optionD}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.category.title}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.age_level.title}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.pass_mark}</td>
+				        <td className="p-2 border-r-2 border-tertiary">{quiz.allow_multiple_attempts}</td>
+				        <td className="p-2 border-r-2 border-tertiary">{quiz.time_limit}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.show_results_immediately}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.shuffle_question}</td>
+                <td className="p-2 border-r-2 border-tertiary">{quiz.shufle_answer}</td>
+                <td className="p-2 border-r-2 border-tertiary"></td>
               </tr>
             ))}
           </tbody>

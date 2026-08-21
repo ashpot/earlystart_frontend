@@ -5,26 +5,27 @@ import Sidebar from '../components/dashboard/shared/Sidebar';
 import CollapsedSidebar from '../components/dashboard/shared/CollapsedSidebar';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../css/dashboardPage.css';
-import CourseList from '../components/dashboard/shared/CourseList';
+import InstructorsList from '../components/dashboard/addInstructors/InstructorsList';
 
-const CourseListPage = ({lessons}) => {
+const ManageInstructorPage = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const toggleSidebar = () => {
-	setIsSidebarCollapsed((prev) => !prev);
-	};
   
-  return (
+    const toggleSidebar = () => {
+    setIsSidebarCollapsed((prev) => !prev);
+    };
+  
+    return (
     <div className="flex min-h-screen">
       {isSidebarCollapsed ? <CollapsedSidebar /> : <Sidebar />}
       <div className="flex-1 flex flex-col bg-[#EFEFEF]">
         <DashboardNavbar toggleSidebar={toggleSidebar} isSidebarCollapsed={isSidebarCollapsed} />
         <div className="w-[95%] mx-auto py-7">
-          <h2 className="font-inter font-bold text-base py-4">ADD COURSE</h2>
-          <CourseList />
+          <h2 className="font-inter font-bold text-base py-4">MANAGE INSTRUCTORS</h2>
+          <InstructorsList />
         </div>
       </div>
     </div>
-  );
+    );
 }
 
-export default CourseListPage
+export default ManageInstructorPage;
