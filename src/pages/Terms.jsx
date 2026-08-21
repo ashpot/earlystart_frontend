@@ -564,4 +564,4 @@ const Terms = () => {
 };
 
 
-export default PrivacyPolicy;
+export default Terms;
