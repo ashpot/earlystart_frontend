@@ -44,7 +44,7 @@ function App() {
 
   return (
       <BrowserRouter>
-        <Routes>
+        <Routes>           
           <Route path="/" element={<Index />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />

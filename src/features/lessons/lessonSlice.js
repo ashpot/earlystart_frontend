@@ -6,7 +6,7 @@ const token = localStorage.getItem('token');
 
 export const fetchLessons = createAsyncThunk('Lessons/fetchLessons',  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/lessons/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/admin/lessons/`, {
           headers: {
             Authorization: `Token ${token}`,
           },

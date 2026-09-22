@@ -10,7 +10,7 @@ export const fetchStudents = createAsyncThunk(
   'students/fetchStudents', 
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/students/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/admin/students/`, {
           headers: {
             Authorization: `Token ${token}`,
           },

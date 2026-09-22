@@ -3,15 +3,6 @@ import React from 'react';
 import logo from '../assets/images/earlystartlogo.png';
 
 
-const Section = ({ title, children }) => (
-  <section className="mb-10">
-    <h1 className="text-2xl font-bold text-slate-900 mb-4">{title}</h1>
-    <div className="space-y-4 text-slate-700 leading-8 text-[17px]">
-      {children}
-    </div>
-  </section>
-);
-
 const PaymentSuccessful = () => {
   return (
     <div className="bg-slate-50 min-h-screen">

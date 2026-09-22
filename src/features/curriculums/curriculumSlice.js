@@ -9,7 +9,7 @@ export const fetchCurriculums = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     
       try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/curriculums/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/admin/curriculums/`, {
           headers: {
             Authorization: `Token ${token}`,
           },

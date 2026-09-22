@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCourses } from '../../../features/courses/coursesSlice';
+import { fetchCurriculums } from '../../../features/curriculums/curriculumSlice';
 import { IoMdArrowDropdown, IoMdClose } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 import icon from '../../../assets/images/dashboardicon.png';
@@ -10,13 +10,13 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const ManageCurriculum = () => {
   const dispatch = useDispatch();
-  const { data: courses = [], loading, error } = useSelector((state) => state.courses);
+  const { data: curriculums = [], loading, error } = useSelector((state) => state.curriculums);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-	dispatch(fetchCourses());
+	dispatch(fetchCurriculums());
   }, [dispatch]);
 
   const handleSearchChange = (event) => {
@@ -29,16 +29,15 @@ const ManageCurriculum = () => {
 	setCurrentPage(1);
   };
 
-  const filteredCourses = courses.filter((course) =>
-	course.course.toLowerCase().includes(searchQuery.toLowerCase()) ||
-	course.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredCurriculums = curriculums.filter((course) =>
+	curriculum.lesson.toLowerCase().includes(searchQuery.toLowerCase()) 
   );
 
-  const totalItems = filteredCourses.length;
+  const totalItems = filteredCurriculums.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentCourses = filteredCourses.slice(startIndex, endIndex);
+  const currentCourses = filteredCurriculums.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const handleItemsPerPageChange = (event) => {
@@ -50,7 +49,7 @@ const ManageCurriculum = () => {
 
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
-  if (loading || courses.length === 6) {
+  if (loading || curriculums.length === 6) {
 	return (
 	  <section className="bg-white p-4 my-10 rounded-lg shadow-md font-inter">
 		<div className="flex justify-between items-center mb-10 border-b border-tertiaryDark pb-3 -mx-6 px-6">

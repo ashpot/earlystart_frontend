@@ -9,7 +9,7 @@ export const fetchSections = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     
       try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/sections/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/admin/sections/`, {
           headers: {
             Authorization: `Token ${token}`,
           },

@@ -10,7 +10,7 @@ export const fetchCourses = createAsyncThunk(
   'courses/fetchCourses', 
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/courses/`, {
+      const response = await axios.get(`${BASE_URL}/api/v1/rest-auth/admin/courses/`, {
           headers: {
             Authorization: `Token ${token}`,
           },
