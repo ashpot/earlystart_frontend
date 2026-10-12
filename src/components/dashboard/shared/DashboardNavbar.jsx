@@ -1,215 +1,196 @@
 
-// import React, { useState, useEffect, useRef } from 'react';
-// import { FaSearch, FaAngleDown, FaUser } from 'react-icons/fa';
-// import { HiOutlineMenuAlt1 } from "react-icons/hi";
-// import { FaXmark } from "react-icons/fa6";
-// import { FiLogOut } from "react-icons/fi";
-// import { useNavigate } from 'react-router-dom';
-// import photo from '../../../assets/images/photo.png';
-
-// const DashboardNavbar = ({ toggleSidebar, isSidebarCollapsed}) => {
-//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-//   const [searchQuery, setSearchQuery] = useState('');
-//   const dropdownRef = useRef(null);
-//   const navigate = useNavigate();
-
-//   const toggleDropdown = () => {
-//     setIsDropdownOpen((prev) => !prev);
-//   };
-
-//   useEffect(() => {
-//     const handleClickOutside = (event) => {
-//       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-//         setIsDropdownOpen(false);
-//       }
-//     };
-//     document.addEventListener('mousedown', handleClickOutside);
-//     return () => {
-//       document.removeEventListener('mousedown', handleClickOutside);
-//     };
-//   }, []);
-
-//   const handleSearch = (query) => {
-//     if (query && query.trim().length > 0) {
-//       navigate('/search-results', { state: { searchQuery: query } });
-//     } else {
-//       setSearchQuery(''); // Clear input if empty
-//     }
-//   };
-
-//   const handleInputChange = (e) => {
-//     const query = e.target.value;
-//     setSearchQuery(query);
-//     handleSearch(query); // Trigger search on change
-//   };
-
-//   return (
-//     <div className=''>
-//       <nav className="bg-white px-4 py-[11.2px] flex justify-between items-center shadow-md">
-//         <div className=' items-center'>
-//           {isSidebarCollapsed ? (
-//             <FaXmark 
-//               className="text-4xl font-extrabold cursor-pointer"
-//               onClick={toggleSidebar}
-//             />
-//           ) : (
-//             <HiOutlineMenuAlt1
-//               className="text-4xl font-extrabold cursor-pointer"
-//               onClick={toggleSidebar}
-//             />
-//           )}
-//         </div>
-        
-//         <div className="relative w-3/4 max-w-lg">
-//           <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tertiary font-semibold text-2xl" />
-//           <input
-//             type="text"
-//             placeholder="Search..."
-//             value={searchQuery}
-//             onChange={handleInputChange}
-//             className="w-full font-normal text-sm p-2 pl-12 rounded-3xl border focus:outline-none focus:ring-2 focus:ring-yellow-400"
-//           />
-//         </div>
-        
-//         <div className="flex items-center space-x-8">
-//           <div className="flex items-center space-x-4 cursor-pointer" ref={dropdownRef} onClick={toggleDropdown}>
-//             <img
-//               src={photo}
-//               alt="User"
-//               className="w-8 h-8 rounded-full "
-//             />
-//             <div className="flex flex-col">
-//               <span className="font-bold text-base">Psalms Kalu</span>
-//               <span className="font-normal text-[13px]">Administrator</span>
-//             </div>
-//             <FaAngleDown className='text-secondary text-xl cursor-pointer'/>
-//           </div>
-//           {isDropdownOpen && (
-//             <ul className="absolute top-16 right-3 w-48 bg-white shadow-lg rounded-lg">
-//               <li className="flex items-center gap-3 px-4 py-2 font-normal text-sm hover:bg-tertiary cursor-pointer"><FaUser className='text-secondaryDark'/> Profile</li>
-//               <li className="flex items-center gap-3 px-4 py-2 font-normal text-sm hover:bg-tertiary cursor-pointer"> <FiLogOut className='text-secondaryDark'/> Logout</li>
-//             </ul>
-//           )}
-//         </div>
-//       </nav>
-//     </div>
-//   );
-// };
-
-// export default DashboardNavbar;
-
-import React, { useState, useEffect, useRef } from 'react';
-import { FaSearch, FaAngleDown, FaUser } from 'react-icons/fa';
+import React, { useEffect, useRef, useState } from "react";
+import {
+  FaSearch,
+  FaAngleDown,
+  FaUser,
+} from "react-icons/fa";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
-import { useNavigate } from 'react-router-dom';
-import photo from '../../../assets/images/photo.png';
+import { useNavigate } from "react-router-dom";
 
-const DashboardNavbar = ({ toggleSidebar, isSidebarCollapsed }) => {
-  
+import photo from "../../../assets/images/photo.png";
+import { useAuth } from "../../../context/AuthContext.jsx";
+
+const DashboardNavbar = ({
+  toggleSidebar,
+  isSidebarCollapsed,
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const dropdownRef = useRef(null);
-  const navigate = useNavigate();
-  const user = localStorage.getItem('user')
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
+  const dropdownRef = useRef(null);
+  const searchRef = useRef(null);
+
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setIsDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+
+    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
     };
   }, []);
 
-  const handleSearch = (query) => {
-    if (query && query.trim().length > 0) {
-      navigate('/search-results', { state: { searchQuery: query } });
-    } else {
-      setSearchQuery('');
-    }
-  };
+  const handleSearch = (event) => {
+    event.preventDefault();
 
-  const handleInputChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    handleSearch(query);
+    const query = searchQuery.trim();
+
+    if (!query) return;
+
+    navigate("/admin/search-results", {
+      state: { searchQuery: query },
+    });
+
+    searchRef.current?.blur();
   };
 
   const handleLogout = () => {
-    // Clear authentication token from localStorage
-    localStorage.removeItem('token');
-    // Close dropdown
     setIsDropdownOpen(false);
-    // Navigate to login page
-    navigate('/login');
+    logout();
+    navigate("/login", { replace: true });
   };
 
+  const fullName = [
+    user?.first_name,
+    user?.last_name,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div>
-      <nav className="bg-white px-4 py-[11.2px] flex justify-between items-center shadow-md">
-        <div className="items-center">
+    <header className="sticky top-0 z-30 border-b border-gray-200 bg-white">
+      <nav className="flex min-h-[72px] items-center justify-between gap-4 px-4 py-3 md:px-6">
+        {/* Sidebar toggle */}
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          aria-label={
+            isSidebarCollapsed
+              ? "Expand sidebar"
+              : "Collapse sidebar"
+          }
+          className="shrink-0 rounded-xl p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+        >
           {isSidebarCollapsed ? (
-            <FaXmark
-              className="text-4xl font-extrabold cursor-pointer"
-              onClick={toggleSidebar}
-            />
+            <FaXmark size={22} />
           ) : (
-            <HiOutlineMenuAlt1
-              className="stopped text-4xl font-extrabold cursor-pointer"
-              onClick={toggleSidebar}
-            />
+            <HiOutlineMenuAlt1 size={24} />
           )}
-        </div>
+        </button>
 
-        <div className="relative w-3/4 max-w-lg">
-          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tertiary font-semibold text-2xl" />
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={handleInputChange}
-            className="w-full font-normal text-sm p-2 pl-12 rounded-3xl border focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        {/* Search */}
+        <form
+          onSubmit={handleSearch}
+          className="relative mx-auto w-full max-w-xl"
+        >
+          <FaSearch
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            size={15}
           />
-        </div>
 
-        <div className="flex items-center space-x-8">
-          <div className="flex items-center space-x-4 cursor-pointer" ref={dropdownRef} onClick={toggleDropdown}>
+          <input
+            ref={searchRef}
+            type="search"
+            placeholder="Search courses, students..."
+            value={searchQuery}
+            onChange={(event) =>
+              setSearchQuery(event.target.value)
+            }
+            aria-label="Search the admin dashboard"
+            className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-100"
+          />
+        </form>
+
+        {/* User menu */}
+        <div className="relative shrink-0" ref={dropdownRef}>
+          <button
+            type="button"
+            onClick={() =>
+              setIsDropdownOpen((previous) => !previous)
+            }
+            aria-expanded={isDropdownOpen}
+            aria-label="Open administrator menu"
+            className="flex items-center gap-2 rounded-xl p-1.5 text-left transition hover:bg-gray-50 sm:gap-3 sm:px-2"
+          >
             <img
-              src={user.photo}
-              alt="User"
-              className="w-8 h-8 rounded-full"
+              src={user?.photo || photo}
+              alt=""
+              className="h-9 w-9 rounded-full border border-gray-200 object-cover"
             />
-            <div className="flex flex-col">
-              <span className="font-bold text-base">{user.first_name}</span>
-              <span className="font-normal text-[13px]">{user.role}</span>
-            </div>
-            <FaAngleDown className="text-secondary text-xl cursor-pointer" />
-          </div>
+
+            <span className="hidden min-w-0 sm:block">
+              <span className="block max-w-36 truncate text-sm font-semibold text-gray-900">
+                {fullName ||
+                  user?.username ||
+                  "Administrator"}
+              </span>
+
+              <span className="block text-xs capitalize text-gray-500">
+                {user?.role || "Administrator"}
+              </span>
+            </span>
+
+            <FaAngleDown
+              className={`hidden text-gray-400 transition-transform sm:block ${
+                isDropdownOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
           {isDropdownOpen && (
-            <ul className="absolute top-16 right-3 w-48 bg-white shadow-lg rounded-lg">
-              <li className="flex items-center gap-3 px-4 py-2 font-normal text-sm hover:bg-tertiary cursor-pointer">
-                <FaUser className="text-secondaryDark" /> Profile
-              </li>
-              <li
-                className="flex items-center gap-3 px-4 py-2 font-normal text-sm hover:bg-tertiary cursor-pointer"
-                onClick={handleLogout}
+            <div className="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl">
+              <div className="border-b border-gray-100 px-4 py-3 sm:hidden">
+                <p className="truncate text-sm font-semibold text-gray-900">
+                  {fullName ||
+                    user?.username ||
+                    "Administrator"}
+                </p>
+                <p className="text-xs capitalize text-gray-500">
+                  {user?.role || "Administrator"}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDropdownOpen(false);
+                  navigate("/admin/profile");
+                }}
+                className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50"
               >
-                <FiLogOut className="text-secondaryDark" /> Logout
-              </li>
-            </ul>
+                <FaUser className="text-gray-400" />
+                Profile
+              </button>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex w-full items-center gap-3 px-4 py-3 text-sm text-red-600 transition hover:bg-red-50"
+              >
+                <FiLogOut />
+                Sign out
+              </button>
+            </div>
           )}
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

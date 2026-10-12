@@ -5,8 +5,15 @@ import { FaEyeSlash } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import axios from 'axios';
 import { BASE_URL } from '../config';
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
+  const redirectTo = location.state?.from?.pathname || "/admin/dashboard";
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
@@ -28,17 +35,25 @@ const LoginPage = () => {
     setError('');
 
     try {
-      const response = await axios.post(`${BASE_URL}/api/v1/rest-auth/admin/auth/signin/`, {
-        username: formData.username,
-        password: formData.password,
-      });
+      const response = await axios.post(
+        `${BASE_URL}/api/v1/rest-auth/admin/auth/signin/`,
+        {
+          username: formData.username,
+          password: formData.password,
+        }
+      );
 
-      console.log(response.data);
-      setMessage('Signed in successfully!');
+      login(response.data.token, response.data.user);
+
+      setMessage("Signed in successfully!");
+      navigate(redirectTo, { replace: true });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', response.data.user);
+      localStorage.setItem(
+        'user',
+        JSON.stringify(response.data.user)
+      );
       
-      // Delay redirect slightly to show success message
+      //Delay redirect slightly to show success message
       setTimeout(() => {
         window.location.href = '/admin/dashboard';
       }, 1000);

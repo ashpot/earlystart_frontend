@@ -1,0 +1,133 @@
+
+/* Engagement chart: 70% and Learning Summary: 30% */
+.dashboard-chart-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-chart-layout > * {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Latest students: 50% and Recent payments: 50% */
+.dashboard-activity-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-activity-layout > * {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .dashboard-chart-layout {
+    grid-template-columns: 7fr 3fr !important;
+  }
+
+  .dashboard-activity-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+
+
+/* Quick Actions responsive grid */
+.dashboard-quick-actions {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-quick-actions > * {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .dashboard-quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-quick-actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+
+/* Earlystart brand palette */
+:root {
+  --earlystart-navy: #343652;
+  --earlystart-blue: #91ADC6;
+  --earlystart-yellow: #FBD22F;
+  --earlystart-gray: #BDBEC0;
+  --earlystart-white: #FFFFFF;
+  --earlystart-black: #000000;
+}
+
+/* Dashboard content surfaces */
+.dashboard-page,
+main {
+  color: var(--earlystart-navy);
+}
+
+.dashboard-page section,
+main section {
+  border-color: rgba(52, 54, 82, 0.12);
+}
+
+/* Primary buttons and links */
+.dashboard-primary-button {
+  background-color: var(--earlystart-navy);
+  color: var(--earlystart-white);
+  transition: background-color 0.2s ease;
+}
+
+.dashboard-primary-button:hover {
+  background-color: #25273E;
+}
+
+/* Highlight buttons */
+.dashboard-highlight-button {
+  background-color: var(--earlystart-yellow);
+  color: var(--earlystart-navy);
+}
+
+.dashboard-highlight-button:hover {
+  filter: brightness(0.96);
+}
+
+/* Chart bars */
+.dashboard-chart-bar {
+  background-color: var(--earlystart-blue);
+}
+
+.dashboard-chart-bar:hover {
+  background-color: var(--earlystart-navy);
+}
+
+/* Branded section headings */
+.dashboard-section-heading {
+  color: var(--earlystart-navy);
+}
+
+/* Neutral dividers */
+.dashboard-divider {
+  border-color: rgba(52, 54, 82, 0.12);
+}
+
