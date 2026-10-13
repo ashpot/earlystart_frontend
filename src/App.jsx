@@ -15,12 +15,18 @@ import RequestDelete from './pages/RequestDelete';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import AddCoursePage from './pages/AddCoursePage';
+import EditCoursePage from "./pages/EditCoursePage";
 import AddCategoryPage from './pages/AddCategoryPage';
+import EditCategoryPage from "./pages/EditCategoryPage";
 import AddLessonTestPage from './pages/AddLessonTestPage';
+import EditLessonTestPage from "./pages/EditLessonTestPage";
 import AddLessonPage from './pages/AddLessonPage';
+import ManageLessonsPage from "./pages/ManageLessonsPage";
+import EditLessonPage from "./pages/EditLessonPage";
 import AddQuizPage from './pages/AddQuizPage';
 import AddCompetition from './pages/AddCompetition';
-import AddSection from './pages/AddSection';
+import AddSectionPage from './pages/AddSectionPage.jsx';
+import EditSectionPage from "./pages/EditSectionPage";
 import AddLiveClass from './pages/AddLiveClass';
 import AddArticle from './pages/AddArticle';
 import AddFaq from './pages/AddFaq'
@@ -39,12 +45,12 @@ import SearchResultsPage from './pages/SearchResultPage';
 import ManageTicketPage from './pages/ManageTicketPage';
 import ManageSectionPage from './pages/ManageSectionPage';
 import ManageLiveClassPage from './pages/ManageLiveClassPage';
-import ManageLesson from './pages/ManageLesson';
 import ManageFaqPage from './pages/ManageFaqPage';
-import ManageLessonTest from './pages/ManageLessonTestsPage';
+import ManageLessonTestsPage from './pages/ManageLessonTestsPage';
 import ManageCompetitionPage from './pages/ManageCompetitionPage';
 import ManageArticle from './pages/ManageArticles';
 import ManageCategoryPage from './pages/ManageCategoriesPage';
+import ManageCoursesPage from './pages/ManageCoursesPage';
      
 
 
@@ -92,17 +98,116 @@ function App() {
           <Route path="administrators/add" element={<AddAdmin />} />
 
           {/* Courses and curriculum */}
-          <Route path="courses" element={<CourseListPage />} />
+          <Route
+            path="/admin/courses"
+            element={
+              <ProtectedRoute>
+                <ManageCoursesPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/course/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditCoursePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="course/add" element={<AddCoursePage />} />
           <Route path="categories" element={<ManageCategoryPage />} />
-          <Route path="category/add" element={<AddCategoryPage />} />
+          <Route path="category/add" element={<ProtectedRoute><AddCategoryPage /> </ProtectedRoute>} />
+          <Route
+            path="category/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditCategoryPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="curriculums" element={<ManageCurriculumPage />} />
-          <Route path="sections" element={<ManageSectionPage />} />
-          <Route path="section/add" element={<AddSection />} />
-          <Route path="lessons" element={<ManageLesson />} />
-          <Route path="lesson/add" element={<AddLessonPage />} />
-          <Route path="lesson-tests" element={<ManageLessonTest />} />
-          <Route path="lesson-test/add" element={<AddLessonTestPage />} />
+          
+          <Route
+            path="section/add"
+            element={
+              <ProtectedRoute>
+                <AddSectionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="sections"
+            element={
+              <ProtectedRoute>
+                <ManageSectionPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="section/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditSectionPage />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="lessons"
+            element={
+              <ProtectedRoute>
+                <ManageLessonsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="lesson/add"
+            element={
+              <ProtectedRoute>
+                <AddLessonPage />
+              </ProtectedRoute>
+            }
+          />
+
+        <Route
+          path="lesson/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditLessonPage />
+            </ProtectedRoute>
+          }
+        />
+
+                  
+        <Route
+          path="lesson-tests"
+          element={
+            <ProtectedRoute>
+              <ManageLessonTestsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="lesson-test/add"
+          element={
+            <ProtectedRoute>
+              <AddLessonTestPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="lesson-test/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditLessonTestPage />
+            </ProtectedRoute>
+          }
+        />
 
           {/* Quizzes */}
           <Route path="quizes" element={<ManageQuizPage />} />
