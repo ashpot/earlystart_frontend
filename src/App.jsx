@@ -25,17 +25,24 @@ import ManageLessonsPage from "./pages/ManageLessonsPage";
 import EditLessonPage from "./pages/EditLessonPage";
 import AddQuizPage from './pages/AddQuizPage';
 import EditQuizPage from "./pages/EditQuizPage";
-import AddCompetition from './pages/AddCompetition';
+import ManageCompetitionsPage from "./pages/ManageCompetitionsPage";
+import AddCompetitionPage from "./pages/AddCompetitionPage";
+import EditCompetitionPage from "./pages/EditCompetitionPage";
+import CompetitionParticipantsPage from "./pages/CompetitionParticipantsPage";
+import SponsorsPage from "./pages/SponsorsPage";
+import CompetitionSettingsPage from "./pages/CompetitionSettingsPage";
 import AddSectionPage from './pages/AddSectionPage.jsx';
 import EditSectionPage from "./pages/EditSectionPage";
-import AddLiveClass from './pages/AddLiveClass';
+import AddLiveClassPage from "./pages/AddLiveClassPage";
+import ManageLiveClassesPage from "./pages/ManageLiveClassesPage";
+import EditLiveClassPage from "./pages/EditLiveClassPage";
+import LiveClassParticipantsPage from "./pages/LiveClassParticipantsPage";
 import AddArticle from './pages/AddArticle';
 import AddFaq from './pages/AddFaq'
 import AddTicket from './pages/AddTicket';
 import './css/styles.css'
-import AddInstructor from './pages/AddInstructor';
-import AddAdmin from './pages/AddAdmin';
-
+import AddUserPage from "./pages/AddUserPage";
+import EditUserPage from "./pages/EditUserPage";
 import UsersPage from "./pages/UsersPage";
 import UserDetailsPage from "./pages/UserDetailsPage";
 
@@ -47,10 +54,8 @@ import ManageQuizzesPage from './pages/ManageQuizzesPage';
 import SearchResultsPage from './pages/SearchResultPage';
 import ManageTicketPage from './pages/ManageTicketPage';
 import ManageSectionPage from './pages/ManageSectionPage';
-import ManageLiveClassPage from './pages/ManageLiveClassPage';
 import ManageFaqPage from './pages/ManageFaqPage';
 import ManageLessonTestsPage from './pages/ManageLessonTestsPage';
-import ManageCompetitionPage from './pages/ManageCompetitionPage';
 import ManageArticle from './pages/ManageArticles';
 import ManageCategoryPage from './pages/ManageCategoriesPage';
 import ManageCoursesPage from './pages/ManageCoursesPage';
@@ -126,8 +131,23 @@ function App() {
           />
 
           
-          <Route path="instructors/add" element={<AddInstructor />} />
-          <Route path="administrators/add" element={<AddAdmin />} />
+          <Route
+            path="add-user"
+            element={
+              <ProtectedRoute>
+                <AddUserPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="users/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditUserPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Courses and curriculum */}
           <Route
@@ -327,12 +347,96 @@ function App() {
 
 
           {/* Live classes */}
-          <Route path="live-classes" element={<ManageLiveClassPage />} />
-          <Route path="class/create" element={<AddLiveClass />} />
+          <Route
+            path="live-classes"
+            element={
+              <ProtectedRoute>
+                <ManageLiveClassesPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="live-classes/add"
+            element={
+              <ProtectedRoute>
+                <AddLiveClassPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="live-classes/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditLiveClassPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/live-classes/:id/participants"
+            element={
+              <ProtectedRoute>
+                <LiveClassParticipantsPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Competitions */}
-          <Route path="competitions" element={<ManageCompetitionPage />} />
-          <Route path="competition/add" element={<AddCompetition />} />
+          <Route
+            path="competitions"
+            element={
+              <ProtectedRoute>
+                <ManageCompetitionsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="competitions/add"
+            element={
+              <ProtectedRoute>
+                <AddCompetitionPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="competitions/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditCompetitionPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="competitions/:id/participants"
+            element={
+              <ProtectedRoute>
+                <CompetitionParticipantsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="competitions/:id/settings"
+            element={
+              <ProtectedRoute>
+                <CompetitionSettingsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="sponsors"
+            element={
+              <ProtectedRoute>
+                <SponsorsPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Finance */}
           <Route path="payments" element={<ManagePaymentPage />} />

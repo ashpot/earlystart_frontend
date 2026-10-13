@@ -1,6 +1,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaSearch,
   FaSync,
@@ -13,7 +13,12 @@ import {
   FaUserFriends,
   FaUserShield,
   FaTimes,
+  FaPlus,
+  FaEdit,
+  FaTrash
 } from "react-icons/fa";
+
+
 
 import DashboardNavbar from "../components/dashboard/shared/DashboardNavbar";
 import Sidebar from "../components/dashboard/shared/Sidebar";
@@ -55,6 +60,8 @@ const roleIcon = {
   Parent: FaUserFriends,
   Admin: FaUserShield,
 };
+
+
 
 const UsersPage = () => {
   const navigate = useNavigate();
@@ -155,6 +162,47 @@ const UsersPage = () => {
     Math.ceil(filteredUsers.length / PAGE_SIZE)
   );
 
+  
+const location = useLocation();
+
+const canManageUser = (user) =>
+  ["Instructor", "Admin"].includes(user.role);
+
+const handleDeleteUser = async (user) => {
+  if (!canManageUser(user)) {
+    window.alert("Only Instructor and Admin accounts can be deleted.");
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `Delete ${user.first_name || user.username}'s account? This action cannot be undone.`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/v1/rest-auth/admin/users/${user.id}/manage/`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.detail || "Unable to delete this user.");
+    }
+
+    // Refresh the list using your existing loading function.
+    await fetchUsers();
+  } catch (error) {
+    window.alert(error.message);
+  }
+};
+
   useEffect(() => {
     if (currentPage > totalPages) setCurrentPage(totalPages);
   }, [currentPage, totalPages]);
@@ -248,6 +296,14 @@ const UsersPage = () => {
                 View student, instructor, parent, and administrator accounts.
               </p>
             </div>
+            <button
+            type="button"
+            onClick={() => navigate("/admin/add-user/")}
+            className="inline-flex items-center gap-2 rounded-xl bg-[#FBD22F] px-4 py-3 text-sm font-bold text-[#343652] hover:opacity-90"
+            >
+            <FaPlus />
+            Add User
+            </button>
 
             <button
               type="button"
@@ -465,16 +521,38 @@ const UsersPage = () => {
                             </td>
 
                             <td className="px-5 py-4 text-right">
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  navigate(`/admin/users/${user.id}`)
-                                }
-                                className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50"
-                              >
-                                <FaEye />
-                                View
-                              </button>
+                              <div className="flex items-center justify-end gap-2">
+  <button
+    type="button"
+    onClick={() => navigate(`/admin/users/${user.id}`)}
+    title="View user"
+    className="rounded-lg p-2 text-gray-500 hover:bg-gray-100"
+  >
+    <FaEye />
+  </button>
+
+  {canManageUser(user) && (
+    <>
+      <button
+        type="button"
+        onClick={() => navigate(`/admin/users/edit/${user.id}`)}
+        title="Edit user"
+        className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+      >
+        <FaEdit />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => handleDeleteUser(user)}
+        title="Delete user"
+        className="rounded-lg p-2 text-red-600 hover:bg-red-50"
+      >
+        <FaTrash />
+      </button>
+    </>
+  )}
+</div>
                             </td>
                           </tr>
                         );

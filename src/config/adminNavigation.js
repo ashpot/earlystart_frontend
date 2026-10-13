@@ -113,12 +113,13 @@ export const adminNavigation = [
     children: [
       {
         label: "Create Class",
-        path: "/admin/class/create",
+        path: "/admin/live-classes/add",
       },
       {
         label: "Manage Classes",
         path: "/admin/live-classes",
       },
+       
     ],
   },
   {
@@ -127,7 +128,7 @@ export const adminNavigation = [
     children: [
       {
         label: "Add Competition",
-        path: "/admin/competition/add",
+        path: "/admin/competitions/add",
       },
       {
         label: "Manage Competitions",
