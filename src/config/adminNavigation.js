@@ -20,21 +20,15 @@ export const adminNavigation = [
     icon: FaUser,
     children: [
       {
-        label: "Students",
-        path: "/admin/students",
+        label: "Add User",
+        path: "/admin/add-user",
       },
       {
-        label: "Instructors",
-        path: "/admin/instructors",
+        label: "Users",
+        path: "/admin/users",
       },
-      {
-        label: "Add Instructor",
-        path: "/admin/instructors/add",
-      },
-      {
-        label: "Add Administrator",
-        path: "/admin/administrators/add",
-      },
+      
+      
     ],
   },
   {
@@ -97,7 +91,19 @@ export const adminNavigation = [
       },
       {
         label: "Manage Quizzes",
-        path: "/admin/quizes",
+        path: "/admin/quizzes",
+      },
+      {
+        label: "Add Quiz Question",
+        path: "/admin/question/add",
+      },
+      {
+        label: "Manage Quiz Questions",
+        path: "/admin/questions",
+      },
+      {
+        label: "Quiz Attempts",
+        path: "/admin/quiz-attempts",
       },
     ],
   },

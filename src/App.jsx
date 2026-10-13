@@ -24,6 +24,7 @@ import AddLessonPage from './pages/AddLessonPage';
 import ManageLessonsPage from "./pages/ManageLessonsPage";
 import EditLessonPage from "./pages/EditLessonPage";
 import AddQuizPage from './pages/AddQuizPage';
+import EditQuizPage from "./pages/EditQuizPage";
 import AddCompetition from './pages/AddCompetition';
 import AddSectionPage from './pages/AddSectionPage.jsx';
 import EditSectionPage from "./pages/EditSectionPage";
@@ -33,14 +34,16 @@ import AddFaq from './pages/AddFaq'
 import AddTicket from './pages/AddTicket';
 import './css/styles.css'
 import AddInstructor from './pages/AddInstructor';
-import ManageInstructorPage from './pages/ManageInstructorPage'
 import AddAdmin from './pages/AddAdmin';
+
+import UsersPage from "./pages/UsersPage";
+import UserDetailsPage from "./pages/UserDetailsPage";
+
 import CourseListPage from './pages/CourseListPage';
 import ManagePaymentPage from './pages/ManagePaymentPage';
 import ManageCurriculumPage from './pages/ManageCurriculumPage';
 import ManageSubscription from './pages/ManageSubscriptionPage';
-import ManageStudentPage from './pages/ManageStudentPage';
-import ManageQuizPage from './pages/ManageQuizPage';
+import ManageQuizzesPage from './pages/ManageQuizzesPage';
 import SearchResultsPage from './pages/SearchResultPage';
 import ManageTicketPage from './pages/ManageTicketPage';
 import ManageSectionPage from './pages/ManageSectionPage';
@@ -51,6 +54,17 @@ import ManageCompetitionPage from './pages/ManageCompetitionPage';
 import ManageArticle from './pages/ManageArticles';
 import ManageCategoryPage from './pages/ManageCategoriesPage';
 import ManageCoursesPage from './pages/ManageCoursesPage';
+import ManageQuestionsPage from "./pages/ManageQuestionsPage";
+import AddQuestionPage from "./pages/AddQuestionPage";
+import EditQuestionPage from "./pages/EditQuestionPage";
+import BulkUploadQuestionsPage from "./pages/BulkUploadQuestionsPage";
+
+import QuizAttemptsPage from "./pages/QuizAttemptsPage";
+import QuizAttemptDetailsPage from "./pages/QuizAttemptDetailsPage";
+
+import NotFoundPage from "./pages/NotFoundPage";
+
+
      
 
 
@@ -92,8 +106,26 @@ function App() {
           <Route path="dashboard" element={<DashboardPage />} />
 
           {/* Users */}
-          <Route path="students" element={<ManageStudentPage />} />
-          <Route path="instructors" element={<ManageInstructorPage />} />
+          
+          <Route
+            path="users"
+            element={
+              <ProtectedRoute>
+                <UsersPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="users/:id"
+            element={
+              <ProtectedRoute>
+                <UserDetailsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          
           <Route path="instructors/add" element={<AddInstructor />} />
           <Route path="administrators/add" element={<AddAdmin />} />
 
@@ -210,8 +242,89 @@ function App() {
         />
 
           {/* Quizzes */}
-          <Route path="quizes" element={<ManageQuizPage />} />
-          <Route path="quiz/add" element={<AddQuizPage />} />
+          
+          <Route
+            path="quizzes"
+            element={
+              <ProtectedRoute>
+                <ManageQuizzesPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="quiz/add"
+            element={
+              <ProtectedRoute>
+                <AddQuizPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="quiz/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditQuizPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="questions"
+            element={
+              <ProtectedRoute>
+                <ManageQuestionsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="question/add"
+            element={
+              <ProtectedRoute>
+                <AddQuestionPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="question/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditQuestionPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="questions/bulk-upload"
+            element={
+              <ProtectedRoute>
+                <BulkUploadQuestionsPage />
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
+            path="quiz-attempts"
+            element={
+              <ProtectedRoute>
+                <QuizAttemptsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="quiz-attempts/:id"
+            element={
+              <ProtectedRoute>
+                <QuizAttemptDetailsPage />
+              </ProtectedRoute>
+            }
+          />
+
+
 
           {/* Live classes */}
           <Route path="live-classes" element={<ManageLiveClassPage />} />
@@ -238,7 +351,7 @@ function App() {
         </Route>
 
         {/* Unknown URLs */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
