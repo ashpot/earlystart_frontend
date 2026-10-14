@@ -68,6 +68,7 @@ import QuizAttemptsPage from "./pages/QuizAttemptsPage";
 import QuizAttemptDetailsPage from "./pages/QuizAttemptDetailsPage";
 import ManageNotificationsPage from "./pages/ManageNotificationsPage";
 import SendNotificationPage from "./pages/SendNotificationPage";
+import NotificationDetailsPage from "./pages/NotificationDetailsPage";
 
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -445,6 +446,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <ManageNotificationsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="notifications/:id"
+            element={
+              <ProtectedRoute>
+                <NotificationDetailsPage />
               </ProtectedRoute>
             }
           />
