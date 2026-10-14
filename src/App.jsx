@@ -66,6 +66,8 @@ import BulkUploadQuestionsPage from "./pages/BulkUploadQuestionsPage";
 
 import QuizAttemptsPage from "./pages/QuizAttemptsPage";
 import QuizAttemptDetailsPage from "./pages/QuizAttemptDetailsPage";
+import ManageNotificationsPage from "./pages/ManageNotificationsPage";
+import SendNotificationPage from "./pages/SendNotificationPage";
 
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -434,6 +436,24 @@ function App() {
             element={
               <ProtectedRoute>
                 <SponsorsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="notifications"
+            element={
+              <ProtectedRoute>
+                <ManageNotificationsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="send-notification"
+            element={
+              <ProtectedRoute>
+                <SendNotificationPage />
               </ProtectedRoute>
             }
           />
