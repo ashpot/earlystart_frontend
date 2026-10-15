@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChartBar, FaChevronDown } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import logo from "../../../assets/images/eslogo.png";
 import { adminNavigation } from "../../../config/adminNavigation";
+import { FaChartArea } from "react-icons/fa6";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -133,6 +134,14 @@ const Sidebar = () => {
         <p className="mb-3 mt-8 px-3 text-[10px] font-semibold uppercase tracking-widest text-secondaryDark/60">
           General
         </p>
+
+        <NavLink
+          to="/admin/analytics"
+          className={linkClasses}
+        >
+          <FaChartBar className="shrink-0 text-lg" />
+          <span>Analytics</span>
+        </NavLink>
 
         <NavLink
           to="/admin/search-results"

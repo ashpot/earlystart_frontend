@@ -21,7 +21,8 @@
     "react-loading-skeleton": "^3.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.3",
-    "react-shimmer-effects": "^1.0.4"
+    "react-shimmer-effects": "^1.0.4",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

@@ -1,7 +1,7 @@
 
 // src/config/adminNavigation.js
 
-import { FaHome, FaUser, FaVideo, FaAward, FaShoppingCart, FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUser, FaVideo, FaAward, FaShoppingCart, FaQuestionCircle, FaChartBar } from "react-icons/fa";
 import {
   FaPenToSquare,
   FaChartLine,

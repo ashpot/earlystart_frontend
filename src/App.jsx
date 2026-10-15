@@ -69,6 +69,13 @@ import QuizAttemptDetailsPage from "./pages/QuizAttemptDetailsPage";
 import ManageNotificationsPage from "./pages/ManageNotificationsPage";
 import SendNotificationPage from "./pages/SendNotificationPage";
 import NotificationDetailsPage from "./pages/NotificationDetailsPage";
+import AnalyticsOverviewPage from "./pages/AnalyticsOverviewPage";
+import LessonAnalyticsPage from "./pages/LessonAnalyticsPage";
+import LessonTestAnalyticsPage from "./pages/LessonTestAnalyticsPage";
+import QuizAnalyticsPage from "./pages/QuizAnalyticsPage";
+import QuizLeaderboardPage from "./pages/QuizLeaderboardPage";
+import LearnerAnalyticsPage from "./pages/LearnerAnalyticsPage";
+import LearnerDetailPage from "./pages/LearnerDetailPage";
 
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -479,6 +486,68 @@ function App() {
           <Route path="faqs/add" element={<AddFaq />} />
           <Route path="articles" element={<ManageArticle />} />
           <Route path="articles/add" element={<AddArticle />} />
+
+          <Route
+            path="analytics"
+            element={
+              <ProtectedRoute>
+                <AnalyticsOverviewPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="analytics/lessons"
+            element={
+              <ProtectedRoute>
+                <LessonAnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+          path="analytics/tests"
+          element={
+            <ProtectedRoute>
+              <LessonTestAnalyticsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+            path="analytics/quizzes"
+            element={
+              <ProtectedRoute>
+                <QuizAnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="analytics/quizzes/:id/leaderboard"
+            element={
+              <ProtectedRoute>
+                <QuizLeaderboardPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="analytics/learners"
+            element={
+              <ProtectedRoute>
+                <LearnerAnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="analytics/learners/:id"
+            element={
+              <ProtectedRoute>
+                <LearnerDetailPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Search */}
           <Route path="search-results" element={<SearchResultsPage />} />
