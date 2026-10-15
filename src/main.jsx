@@ -7,7 +7,7 @@ import store from "./store";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 
-import "./output.css";
+import "./index.css";
 
 const root = createRoot(document.getElementById("root"));
 

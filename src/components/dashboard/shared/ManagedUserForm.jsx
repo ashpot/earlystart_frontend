@@ -227,7 +227,7 @@ export default function ManagedUserForm({ userId = null }) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="max-w-4xl">
       <button
         type="button"
         onClick={() => navigate("/admin/users")}
