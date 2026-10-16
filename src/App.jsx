@@ -76,6 +76,8 @@ import QuizAnalyticsPage from "./pages/QuizAnalyticsPage";
 import QuizLeaderboardPage from "./pages/QuizLeaderboardPage";
 import LearnerAnalyticsPage from "./pages/LearnerAnalyticsPage";
 import LearnerDetailPage from "./pages/LearnerDetailPage";
+import ParentAnalyticsPage from "./pages/ParentAnalyticsPage";
+import ParentDetailPage from "./pages/ParentDetailPage";
 
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -545,6 +547,24 @@ function App() {
             element={
               <ProtectedRoute>
                 <LearnerDetailPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="analytics/parents"
+            element={
+              <ProtectedRoute>
+                <ParentAnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="analytics/parents/:id"
+            element={
+              <ProtectedRoute>
+                <ParentDetailPage />
               </ProtectedRoute>
             }
           />

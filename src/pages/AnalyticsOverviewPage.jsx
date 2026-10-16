@@ -325,6 +325,50 @@ export default function AnalyticsOverviewPage() {
               Refresh
             </button>
           </div>
+          <div className="inline-flex justify-between gap-2">
+            <button
+                type="button"
+                onClick={() => navigate("/admin/analytics/lessons")}
+                className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold hover:bg-gray-50"
+                >
+                View detailed lesson analytics
+                </button>
+                <button
+                    type="button"
+                    onClick={() => navigate("/admin/analytics/tests")}
+                    className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold hover:bg-gray-50"
+                    >
+                    View lesson test analytics
+                    </button>
+                
+                <button
+                    type="button"
+                    onClick={() => navigate("/admin/analytics/quizzes")}
+                    className="rounded-lg px-4 py-2.5 font-semibold transition hover:opacity-80"
+                    style={{ backgroundColor: "#FBD22F", color: "#343652" }}
+                    >
+                    View Quiz Analytics
+                    </button>
+
+                    <button
+                    type="button"
+                    onClick={() => navigate("/admin/analytics/learners")}
+                    className="rounded-lg px-4 py-2.5 font-semibold transition hover:opacity-80"
+                    style={{ backgroundColor: "#FBD22F", color: "#343652" }}
+                    >
+                    View Learner Insights
+                    </button>
+
+                    <button
+                    type="button"
+                    onClick={() => navigate("/admin/analytics/parents")}
+                    className="rounded-lg px-4 py-2.5 font-semibold transition hover:opacity-80"
+                    style={{ backgroundColor: "#FBD22F", color: "#343652" }}
+                    >
+                    View Parent Analytics
+                    </button>
+
+          </div>
 
           {/* Filters */}
           <section className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
@@ -645,38 +689,7 @@ export default function AnalyticsOverviewPage() {
                     Completion and recorded learning time by lesson.
                   </p>
                 </div>
-                <button
-                type="button"
-                onClick={() => navigate("/admin/analytics/lessons")}
-                className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold hover:bg-gray-50"
-                >
-                View detailed lesson analytics
-                </button>
-                <button
-                    type="button"
-                    onClick={() => navigate("/admin/analytics/tests")}
-                    className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold hover:bg-gray-50"
-                    >
-                    View lesson test analytics
-                    </button>
                 
-                <button
-                    type="button"
-                    onClick={() => navigate("/admin/analytics/quizzes")}
-                    className="rounded-lg px-4 py-2.5 font-semibold transition hover:opacity-80"
-                    style={{ backgroundColor: "#FBD22F", color: "#343652" }}
-                    >
-                    View Quiz Analytics
-                    </button>
-
-                    <button
-                    type="button"
-                    onClick={() => navigate("/admin/analytics/learners")}
-                    className="rounded-lg px-4 py-2.5 font-semibold transition hover:opacity-80"
-                    style={{ backgroundColor: "#FBD22F", color: "#343652" }}
-                    >
-                    View Learner Insights
-                    </button>
                 </div>
                 
 

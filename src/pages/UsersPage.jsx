@@ -296,6 +296,7 @@ const handleDeleteUser = async (user) => {
                 View student, instructor, parent, and administrator accounts.
               </p>
             </div>
+            <div>
             <button
             type="button"
             onClick={() => navigate("/admin/add-user/")}
@@ -309,11 +310,12 @@ const handleDeleteUser = async (user) => {
               type="button"
               onClick={loadUsers}
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50 ml-3"
             >
               <FaSync />
               Refresh
             </button>
+            </div>
           </div>
 
           {error && (
