@@ -163,7 +163,7 @@ export const adminNavigation = [
         path: "/admin/tickets/add",
       },
       {
-        label: "Send Notificationst",
+        label: "Send Notifications",
         path: "/admin/send-notification/",
       },
       {
