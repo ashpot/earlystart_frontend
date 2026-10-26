@@ -3,6 +3,7 @@ import Navbar from '../components/landing/Navbar'
 import Hero from '../components/landing/Hero'
 import About from '../components/landing/About'
 import Users from '../components/landing/Users'
+import TutorialVideos from '../components/landing/TutorialVideos'
 import Features from '../components/landing/Features'
 import Plan from '../components/landing/Plan'
 import Partners from '../components/landing/Partners'
@@ -18,6 +19,7 @@ const index = () => {
 		<Users />
 		<Plan />
 		<Partners />
+		<TutorialVideos />
 		<Footer />
 	</div>
   )

@@ -28,13 +28,13 @@ const Hero = () => {
 				<div className='space-y-4 w-[90%] mx-auto'>
 					<h1 className='font-bold text-4xl md:text-6xl'>Give Your Child a <span className='text-primary italic'>Smart Start</span> </h1>
 					<h5 className='font-bold text-base md:text-4xl'>Learn, Play & Grow with Earlystart!</h5>
-					<p className='font-medium text-sm md:text-xl md:max-w-[70%] md:mx-auto'>The all-in-one educational app designed to nurture young minds through fun, interactive lessons, games, and stories; built just for kids, loved by parents.</p>
+					<p className='font-medium text-sm md:text-xl md:max-w-[70%] md:mx-auto'>The all-in-one educational app designed to nurture young minds through fun, interactive lessons, live classes, games, quizzes and tech competitions; built just for kids, loved by parents.</p>
 				</div>
 
 				<div className='w-[90%] mx-auto'>
 					<div className='flex flex-col md:flex-row justify-center gap-4 md:gap-7  md:w-[60%] md:mx-auto'>
 						<a
-						href=""
+						href="https://play.google.com/store/apps/details?id=com.ashpot.earlystart"
 						className="flex items-center justify-center gap-2 border-3 rounded-full py-3 px-5 " target="_blank" rel="noopener noreferrer"
 							style={{
 								backgroundColor: '#0BA7F508',
@@ -47,7 +47,7 @@ const Hero = () => {
 							<BiLogoPlayStore size={24} aria-hidden="true" />
 							<span className="font-semibold text-sm md:text-base">Download on Play Store</span> 
 						</a>
-						<a href=""
+						<a href="https://apps.apple.com/us/app/earlystart/id6817841190"
 						className='flex items-center justify-center gap-2 border-3 rounded-full py-3 px-5' target="_blank" rel="noopener noreferrer"
 							style={{
 								backgroundColor: '#0BA7F508',

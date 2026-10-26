@@ -16,7 +16,7 @@ const Footer = () => {
 			<div className='flex flex-col md:flex-row items-center space-y-4 md:space-x-2 bg-secondaryDark md:bg-opacity-100 p-5 rounded-2xl '>
 				<h3 className='font-medium text-sm md:text-xl md:mr-6 '>Start creating your memories...</h3>
 				<a
-				href=""
+				href="https://play.google.com/store/apps/details?id=com.ashpot.earlystart"
 				className="flex items-center gap-2 border-3 rounded-full py-3 px-5 " target="_blank" rel="noopener noreferrer"
 					style={{
 						backgroundColor: '#0BA7F508',
@@ -29,7 +29,7 @@ const Footer = () => {
 					<BiLogoPlayStore size={24} aria-hidden="true" />
 					<span className="font-semibold text-sm md:text-base">Download on Play Store</span> 
 				</a>
-				<a href=""
+				<a href="https://apps.apple.com/us/app/earlystart/id6817841190"
 				className="flex items-center gap-2 border-3 rounded-full py-3 px-5 " target="_blank" rel="noopener noreferrer"
 					style={{
 						backgroundColor: '#0BA7F508',
