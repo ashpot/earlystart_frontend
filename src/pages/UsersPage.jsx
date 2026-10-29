@@ -15,7 +15,8 @@ import {
   FaTimes,
   FaPlus,
   FaEdit,
-  FaTrash
+  FaTrash,
+  FaFileExcel
 } from "react-icons/fa";
 
 
@@ -53,6 +54,17 @@ const fullName = (user) =>
     .filter(Boolean)
     .join(" ")
     .trim();
+
+// Escape CSV values and guard against spreadsheet formula injection.
+const toCsvCell = (value) => {
+  let text = value == null ? "" : String(value);
+
+  if (/^[=+@\-\t\r]/.test(text)) {
+    text = `'${text}`;
+  }
+
+  return `"${text.replace(/"/g, '""')}"`;
+};
 
 const roleIcon = {
   Student: FaUserGraduate,
@@ -162,8 +174,58 @@ const UsersPage = () => {
     Math.ceil(filteredUsers.length / PAGE_SIZE)
   );
 
-  
-const location = useLocation();
+  const exportUsersToExcel = () => {
+    if (!filteredUsers.length) {
+      window.alert("There are no users to export.");
+      return;
+    }
+
+    // Export every user matching the current filters, not only the visible page.
+    const columns = [
+      "User ID",
+      "Full Name",
+      "Username",
+      "Role",
+      "Email",
+      "Phone",
+      "Children",
+      "Date Joined",
+      "Status",
+    ];
+
+    const rows = filteredUsers.map((user) => [
+      user.id,
+      fullName(user) || user.username,
+      user.username,
+      user.role,
+      user.email,
+      user.phone,
+      user.role === "Parent" ? user.children_count || 0 : "",
+      formatDate(user.date_joined),
+      user.is_active ? "Active" : "Inactive",
+    ]);
+
+    const csv = [columns, ...rows]
+      .map((row) => row.map(toCsvCell).join(","))
+      .join("\r\n");
+
+    // UTF-8 BOM helps Excel display names and other non-ASCII text correctly.
+    const blob = new Blob(["\uFEFF", csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const date = new Date().toISOString().slice(0, 10);
+
+    link.href = url;
+    link.download = `earlystart-users-${date}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const location = useLocation();
 
 const canManageUser = (user) =>
   ["Instructor", "Admin"].includes(user.role);
@@ -197,7 +259,7 @@ const handleDeleteUser = async (user) => {
     }
 
     // Refresh the list using your existing loading function.
-    await fetchUsers();
+    await loadUsers();
   } catch (error) {
     window.alert(error.message);
   }
@@ -296,25 +358,25 @@ const handleDeleteUser = async (user) => {
                 View student, instructor, parent, and administrator accounts.
               </p>
             </div>
-            <div>
-            <button
-            type="button"
-            onClick={() => navigate("/admin/add-user/")}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#FBD22F] px-4 py-3 text-sm font-bold text-[#343652] hover:opacity-90"
-            >
-            <FaPlus />
-            Add User
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => navigate("/admin/add-user/")}
+                className="inline-flex items-center gap-2 rounded-xl bg-[#FBD22F] px-4 py-3 text-sm font-bold text-[#343652] hover:opacity-90"
+              >
+                <FaPlus />
+                Add User
+              </button>
 
-            <button
-              type="button"
-              onClick={loadUsers}
-              disabled={loading}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50 ml-3"
-            >
-              <FaSync />
-              Refresh
-            </button>
+              <button
+                type="button"
+                onClick={loadUsers}
+                disabled={loading}
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              >
+                <FaSync />
+                Refresh
+              </button>
             </div>
           </div>
 
@@ -419,9 +481,21 @@ const handleDeleteUser = async (user) => {
                   Select a user to view their profile.
                 </p>
               </div>
-              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
-                {filteredUsers.length} users
-              </span>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                  {filteredUsers.length} users
+                </span>
+                <button
+                  type="button"
+                  onClick={exportUsersToExcel}
+                  disabled={loading || filteredUsers.length === 0}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+                  title="Export all users matching the current filters"
+                >
+                  <FaFileExcel />
+                  Export to Excel
+                </button>
+              </div>
             </div>
 
             {loading ? (

@@ -55,6 +55,8 @@ export default function CoursesPage() {
   const [page, setPage] = useState(1);
   const [deletingId, setDeletingId] = useState(null);
   const [courseToDelete, setCourseToDelete] = useState(null);
+  const [publishingId, setPublishingId] = useState(null);
+  const [courseToPublish, setCourseToPublish] = useState(null);
 
   const pageSize = 10;
 
@@ -133,6 +135,58 @@ export default function CoursesPage() {
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
+
+  const confirmPublish = async () => {
+    if (!courseToPublish) return;
+
+    if (!token) {
+      setError("Your session has expired. Please sign in again.");
+      setCourseToPublish(null);
+      return;
+    }
+
+    const course = courseToPublish;
+    setPublishingId(course.id);
+    setError("");
+    setNotice("");
+
+    try {
+      // Assumes publish_course is a DRF detail action:
+      // POST /admin/courses/<course_id>/publish_course/
+      const response = await fetch(`${API_URL}${course.id}/publish/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          data?.detail || data?.message || data?.error ||
+            `Unable to publish course (HTTP ${response.status}).`
+        );
+      }
+
+      setCourses((previous) =>
+        previous.map((item) =>
+          item.id === course.id
+            ? { ...item, is_published: true }
+            : item
+        )
+      );
+      setNotice(data?.message || data?.detail || `"${course.title}" was published successfully.`);
+      setCourseToPublish(null);
+    } catch (err) {
+      console.error("Publishing course failed:", err);
+      setError(err.message || "Unable to publish this course.");
+    } finally {
+      setPublishingId(null);
+    }
+  };
 
   const confirmDelete = async () => {
     if (!courseToDelete || !token) {
@@ -386,9 +440,36 @@ export default function CoursesPage() {
                             >
                               {course.is_active ? "Active" : "Inactive"}
                             </span>
+                            <div className="mt-2">
+                              <span
+                                className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                                  course.is_published
+                                    ? "bg-blue-50 text-blue-700"
+                                    : "bg-amber-50 text-amber-700"
+                                }`}
+                              >
+                                {course.is_published ? "Published" : "Unpublished"}
+                              </span>
+                            </div>
                           </td>
                           <td className="px-5 py-4">
                             <div className="flex justify-end gap-2">
+                              {!course.is_published && (
+                                <button
+                                  type="button"
+                                  title="Publish course"
+                                  aria-label={`Publish ${course.title}`}
+                                  disabled={publishingId === course.id || Boolean(deletingId)}
+                                  onClick={() => setCourseToPublish(course)}
+                                  className="rounded-lg border border-emerald-100 p-2 text-emerald-700 hover:bg-emerald-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                  {publishingId === course.id ? (
+                                    <span className="text-xs font-semibold">...</span>
+                                  ) : (
+                                    <FaCheckCircle />
+                                  )}
+                                </button>
+                              )}
                               <button
                                 type="button"
                                 title="View course"
@@ -459,6 +540,55 @@ export default function CoursesPage() {
           </section>
         </main>
       </div>
+
+      {/* Publish confirmation */}
+      {courseToPublish && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget && !publishingId) {
+              setCourseToPublish(null);
+            }
+          }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="publish-course-title"
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
+              <FaCheckCircle size={20} />
+            </div>
+            <h2 id="publish-course-title" className="mt-4 text-lg font-bold">
+              Publish course?
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              Are you sure you want to publish <strong>{courseToPublish.title}</strong>?
+              Once published, it may become visible to learners in the app.
+            </p>
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                type="button"
+                disabled={Boolean(publishingId)}
+                onClick={() => setCourseToPublish(null)}
+                className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={Boolean(publishingId)}
+                onClick={confirmPublish}
+                className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {publishingId ? "Publishing..." : "Yes, publish course"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Delete confirmation */}
       {courseToDelete && (
