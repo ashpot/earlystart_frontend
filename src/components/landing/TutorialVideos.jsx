@@ -15,7 +15,7 @@ const tutorials = [
     description:
       'New to Earlystart? Learn how to create your parent account and get started on your child’s learning journey.',
     icon: <FaUserPlus />,
-    videoId: 'YOUR_CREATE_ACCOUNT_VIDEO_ID',
+    videoId: 'tD8DTuImaTw',
     duration: 'Getting Started',
     audience: 'Parents',
   },
@@ -24,7 +24,7 @@ const tutorials = [
     description:
       'Follow this simple guide to create your child’s profile and give them access to exciting learning activities.',
     icon: <FaChild />,
-    videoId: 'YOUR_ADD_CHILD_VIDEO_ID',
+    videoId: '8arodO_qthc',
     duration: 'Parent Guide',
     audience: 'Parents',
   },
