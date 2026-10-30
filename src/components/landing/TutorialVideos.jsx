@@ -42,7 +42,7 @@ const tutorials = [
     description:
       'Learn how to manage your child’s profile, update account details, and follow their learning progress.',
     icon: <FaUsersCog />,
-    videoId: 'YOUR_MANAGE_CHILD_VIDEO_ID',
+    videoId: 'vMT9CUKbk3w',
     duration: 'Parent Guide',
     audience: 'Parents',
   },
