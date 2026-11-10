@@ -23,11 +23,14 @@ const Navbar = () => {
       </div>
 
       <nav className="flex-grow flex justify-end">
-        <div className="font-jakarta space-x-10 font-semibold text-xl text-[#333652] hidden md:flex items-center ">
-          <a href="#home" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Home</a>
-          <a href="#about" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>About</a>
-          <a href="#partnerships" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Patners</a>
-          <a href="#contact" className='font-semibold text-xl hover:bg-secondaryLight px-4 py-2 rounded-2xl transition duration-300'>Contact Us</a>
+        <div className="font-jakarta space-x-6 font-semibold text-base text-[#333652] hidden md:flex items-center ">
+          <a href="#home" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Home</a>
+          <a href="#about" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>About</a>
+          <a href="#features" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Features</a>
+          <a href="#pricing" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Pricing</a>
+          <a href="#partnerships" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Partners</a>
+          <a href="#tutorial-videos" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Tutorials</a>
+          <a href="/contact-us" className='font-semibold text-base hover:bg-secondaryLight px-2 py-2 rounded-2xl transition duration-300'>Contact Us</a>
         </div>
       </nav>
 

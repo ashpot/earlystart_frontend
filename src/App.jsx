@@ -10,6 +10,8 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Index from './pages/LandingPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
+import ContactUs from './pages/ContactUsPage.jsx';
+import FAQ from './pages/FAQPage.jsx';
 import PaymentSuccessful from './pages/PaymentSuccessful';
 import RequestDelete from './pages/RequestDelete';
 import DashboardPage from './pages/DashboardPage';
@@ -93,6 +95,8 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/payment/successful" element={<PaymentSuccessful />} />
         <Route path="/request-delete" element={<RequestDelete />} />
 

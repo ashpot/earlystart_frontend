@@ -81,7 +81,7 @@ const Footer = () => {
 						<h4 className='font-semibold text-secondary text-xs md:text-[13px] mb-5'>HELP</h4>
 						<ul className='md:space-y-8 space-y-2 font-normal text-xs md:text-[16.8px]'>
 							<li><a href='/contact-us'>Contact Us</a></li>
-							<li><a href="/faqs">FAQs</a> </li>
+							<li><a href="/faq">FAQs</a> </li>
 							<li><a href="/terms">Terms & Conditions</a> </li>
 							<li><a href="/privacy-policy">Privacy Policy</a> </li>
 						</ul>
